@@ -1,5 +1,6 @@
-import { Document, Schema, model } from "mongoose"
+import { Document, Model, Schema, model } from "mongoose"
 import isEmail from "validator/lib/isEmail";
+import { compare, genSalt, hash } from "bcrypt";
 
 export interface ISettings 
 {
@@ -21,6 +22,11 @@ export interface IUser extends Document
     settings: ISettings
 };
 
+export interface UserModel extends Model<IUser>
+{
+    login(log:string, password:string): Promise<Document>
+}
+
 const userSchema = new Schema<IUser>({
     username: {type:String, required:true, maxlength:32, minlength:4},
     password: {type:String, required:true, maxlength: 255, minlength: 8},
@@ -36,5 +42,38 @@ const userSchema = new Schema<IUser>({
     }}
 }, {timestamps: true});
 
-const userModel = model<IUser>('user', userSchema);
+userSchema.pre<IUser>('save', async function(this: IUser, next) {
+    const salt:string = await genSalt();
+    this.password = await hash(this.password, salt);
+    next();
+});
+
+userSchema.statics.login = async function (log:string, password:string)
+{
+    var user;
+
+    if(isEmail(log))
+    {
+        user = await userModel.findOne({email: log});
+    }
+    else 
+    {
+        user = await userModel.findOne({username: log});
+    }
+
+    if (user) 
+    {
+        const auth = await compare(password, user.password);
+        if (auth)
+        {
+            return user
+        }
+        else
+        {
+            throw new Error("Incorrect logs");
+        }
+    }
+}
+
+const userModel = model<IUser, UserModel>('user', userSchema);
 export default userModel;
