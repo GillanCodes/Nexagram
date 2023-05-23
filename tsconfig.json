@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target" : "es6",
+        "outDir" : "./dist/",
+        "rootDir" : "./",
+        "module" : "commonjs",
+        "strict" : true,
+        "noEmitOnError" : false,
+        "typeRoots" : ["./node_modules/@types"]
+    },
+    "files" : [
+        "server.ts"
+    ],
+    "include" : [
+        "./config/",
+        "./src/",
+        "./middlewares/",
+        "./models/"
+    ]
+}
