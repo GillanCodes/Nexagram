@@ -1,5 +1,12 @@
-import { Schema, model } from "mongoose"
+import { Document, Schema, model } from "mongoose"
 import isEmail from "validator/lib/isEmail";
+
+export interface ISettings 
+{
+    isPrivate: boolean,
+    theme: string,
+    lang: string
+};
 
 export interface IUser extends Document
 {
@@ -11,21 +18,8 @@ export interface IUser extends Document
     followers:[string],
     bio:string,
     saved_posts: object,
-    settings: object
+    settings: ISettings
 };
-
-export interface ISettings 
-{
-    isPrivate: boolean,
-    theme: string,
-    lang: string
-};
-
-const settingsSchema = new Schema<ISettings>({
-    isPrivate: {type:Boolean, default:false},
-    theme: {type:String, default: "light_default"},
-    lang: {type:String, default:"en_US"}
-});
 
 const userSchema = new Schema<IUser>({
     username: {type:String, required:true, maxlength:32, minlength:4},
@@ -35,8 +29,12 @@ const userSchema = new Schema<IUser>({
     follow: {type: [String], default: []},
     followers: {type: [String], default: []},
     bio: {type: String, maxlength: 1024},
-    settings: {type: settingsSchema, default:{}}
-});
+    settings: {type: {
+        isPrivate: {type: Boolean, default: false},
+        theme: {type: String, default: "light_default"},
+        lang: {type: String, default: "en_US"}
+    }}
+}, {timestamps: true});
 
 const userModel = model<IUser>('user', userSchema);
 export default userModel;
