@@ -48,6 +48,8 @@ const corsOptions:Object = {
 //init cors
 app.use(cors(corsOptions));
 
+
+
 app.listen(sanitizedConfig.PORT, () => {
     console.log(`[Nexagram] API is UP ! Listening on ${sanitizedConfig.PORT}`);
 });
