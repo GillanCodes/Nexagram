@@ -48,6 +48,12 @@ const corsOptions:Object = {
 //init cors
 app.use(cors(corsOptions));
 
+//Import routes
+import authRoutes from "./src/routes/auth.routes";
+import userRoutes from "./src/routes/user.routes";
+//Routes
+app.use('/api/auth/', authRoutes);
+app.use('/api/user/', userRoutes);
 
 
 app.listen(sanitizedConfig.PORT, () => {
