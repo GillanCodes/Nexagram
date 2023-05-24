@@ -2,6 +2,15 @@ import { Request, Response } from "express";
 import { isEmpty } from "../utils/isEmpty";
 import userModel from "../../models/users.model";
 import { registerErrors } from "../errors/auth.errors";
+import { sign } from "jsonwebtoken";
+import sanitizedConfig from "../../config/config";
+
+const maxAge:number = 3*21*60*60*1000;
+const createToken = (id:string) => {
+    return sign({id}, sanitizedConfig.JWT_TOKEN as string, {
+        expiresIn: maxAge
+    });
+};
 
 export const register = async(req:Request, res:Response) => {
     const { email, username, password, fullname } : { email:string, username:string, password:string, fullname:string } = req.body;
@@ -18,5 +27,20 @@ export const register = async(req:Request, res:Response) => {
     } catch (error) {
         const errors = registerErrors(error);
         return res.status(400).send({errors});
+    };
+};
+
+export const login = async (req:Request, res:Response) => {
+    const {email, password} : {email:string, password:string} =  req.body;
+    try {
+        if (isEmpty(email)) throw Error('register_empty_field_email');
+        if (isEmpty(password)) throw Error('register_empty_field_password');
+
+        var user = await userModel.login(email, password);
+        const token:string = createToken(user._id);
+        res.cookie('auth', token, {httpOnly:true, maxAge});
+        return res.status(200).json({user});
+    } catch (error) {
+        //TODO
     };
 };
