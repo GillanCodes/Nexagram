@@ -29,7 +29,6 @@ let whitelist = [undefined, "http://localhost:5053"];
 const corsOptions:Object = {
     origin : function(origin:string, cb:Callback)
     {
-        console.log(origin);
         if (whitelist.indexOf(origin) !== -1)
         {
             cb(null, true);
