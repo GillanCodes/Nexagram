@@ -27,8 +27,9 @@ export const getUsers = async (req:Request, res:Response) => {
 export const getUser = async(req:Request, res:Response) => {
     const { id } = req.params;
     
-    try {
-        if (res.locals.user._id !== id) throw Error('not_an_author_request');
+    try{
+        
+        if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_get_invalid_format_id');
 
         const user = await userModel.findById(id);
@@ -52,7 +53,7 @@ export const updateUser = (req:Request, res:Response) => {
     const { id } = req.params;
     const {fullname, bio} = req.body;
     try {
-        if (res.locals.user._id !== id) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_patch_invalid_format_id');
         if (isEmpty(fullname)) throw Error('user_patch_empty_field_fullname');
         if (isEmpty(bio)) throw Error('user_patch_empty_field_bio');
@@ -83,7 +84,7 @@ export const changeUsername = async (req:Request, res:Response) => {
     const { id } = req.params;
     const { username } : {username:string} = req.body
     try {
-        if (res.locals.user._id !== id) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_patch_invalid_format_id');
         if (isEmpty(username)) throw Error('user_patch_empty_field_username');
         
@@ -114,7 +115,7 @@ export const changeUserPicture = (req:any, res:Response) => {
     const { id } = req.params;
     const file = req.file;
     try {
-        if (res.locals.user._id !== id) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_patch_invalid_format_id');
         if (isEmpty(file)) throw Error('user_patch_empty_filed_file');
         if (req.file.mimetype !==  "image/jpg" && req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpeg") throw Error('user_patch_invalid_type_file');
@@ -150,7 +151,7 @@ export const changeUserSettings = (req:any, res:Response) => {
     const { id } = req.params;
     const {settings} : {settings:object} = req.body;
     try {
-        if (res.locals.user._id !== id) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_settings_patch_invalid_format_id');
         if (isEmpty(settings)) throw Error('user_setting_patch_empty_field_settings');
 
@@ -172,7 +173,7 @@ export const changeUserSettings = (req:any, res:Response) => {
 export const userFollow = async (req:Request, res:Response) => {
     const { followerId, followedId } = req.params;
     try {
-        if (res.locals.user._id !== followerId) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== followerId) throw Error('not_an_author_request');
         if (!isValidObjectId(followerId)) throw Error('user_follow_invalid_format_followerId');
         if (!isValidObjectId(followedId)) throw Error('user_follow_invalid_format_followedId');
 
@@ -211,7 +212,7 @@ export const userFollow = async (req:Request, res:Response) => {
 export const userUnfollow = async (req:Request, res:Response) => {
     const { followerId, followedId } = req.params;
     try {
-        if (res.locals.user._id !== followerId) throw Error('not_an_author_request');
+        if (res.locals.user._id.toString() !== followerId) throw Error('not_an_author_request');
         if (!isValidObjectId(followerId)) throw Error('user_follow_invalid_format_followerId');
         if (!isValidObjectId(followedId)) throw Error('user_follow_invalid_format_followedId');
 

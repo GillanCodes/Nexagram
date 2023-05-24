@@ -1,6 +1,9 @@
 import { Router } from "express";
 let router:Router = Router();
 
+import multer = require("multer");
+const upload = multer();
+
 import {
     getUser,
     getUsers,
@@ -17,7 +20,7 @@ router.get('/:id', getUser);
 
 router.patch('/:id/', updateUser);
 router.patch('/:id/username', changeUsername);
-router.patch('/:id/avatar', changeUserPicture);
+router.patch('/:id/avatar', upload.single('file'), changeUserPicture);
 router.patch('/:id/settings', changeUserSettings);
 
 router.post('/:followerId/follow/:followedId', userFollow);
