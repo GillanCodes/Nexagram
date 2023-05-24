@@ -129,3 +129,24 @@ export const changeUserPicture = (req:any, res:Response) => {
         //TODO
     } 
 };
+
+export const changeUserSettings = (req:any, res:Response) => {
+    const { id } = req.param;
+    const {settings} : {settings:object} = req.body;
+    try {
+        if (!isValidObjectId(id)) throw Error('user_settings_patch_invalid_format_id');
+        if (isEmpty(settings)) throw Error('user_setting_patch_empty_field_settings');
+
+        userModel.findByIdAndUpdate(id, {
+            $set: {
+                settings,
+            }
+        }, {upsert:true, new:true}).then((data) => {
+            return res.status(201).send(data);
+        }).catch((err) => {
+            throw Error(err);
+        })
+    } catch (error) {
+        //TODO
+    };
+};
