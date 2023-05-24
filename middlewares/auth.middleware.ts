@@ -3,7 +3,7 @@ import { verify } from "jsonwebtoken";
 import sanitizedConfig from "../config/config";
 import userModel from "../models/users.model";
 
-module.exports.checkUser =async (req:Request, res:Response, next: () => void) => {
+const checkUser = async (req:Request, res:Response, next: () => void) => {
     let token = req.cookies.auth;
     if (token)
     {
@@ -28,7 +28,7 @@ module.exports.checkUser =async (req:Request, res:Response, next: () => void) =>
     }
 }
 
-module.exports.requireAuth = (req:Request, res:Response, next : () => void) => {
+const requireAuth = (req:Request, res:Response, next : () => void) => {
     const token = req.cookies.auth;
     if (token)
     {
@@ -48,3 +48,5 @@ module.exports.requireAuth = (req:Request, res:Response, next : () => void) => {
         return res.status(200);
     }
 }
+
+export {checkUser, requireAuth};
