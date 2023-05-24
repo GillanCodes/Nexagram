@@ -29,10 +29,11 @@ let whitelist = [undefined, "http://localhost:5053"];
 const corsOptions:Object = {
     origin : function(origin:string, cb:Callback)
     {
-        if (whitelist.indexOf(origin) === -1)
+        console.log(origin);
+        if (whitelist.indexOf(origin) !== -1)
         {
             cb(null, true);
-        } 
+        }
         else
         {
             cb(new Error('not allowed by cors !'), true);
