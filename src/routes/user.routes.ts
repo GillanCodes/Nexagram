@@ -7,15 +7,20 @@ import {
     updateUser,
     changeUsername,
     changeUserPicture,
-    changeUserSettings
+    changeUserSettings,
+    userFollow,
+    userUnfollow
 } from "../controllers/user.controller";
 
-router.get('/:id', getUser);
 router.get('/all', getUsers);
+router.get('/:id', getUser);
 
 router.patch('/:id/', updateUser);
 router.patch('/:id/username', changeUsername);
 router.patch('/:id/avatar', changeUserPicture);
 router.patch('/:id/settings', changeUserSettings);
+
+router.post('/:followerId/follow/:followedId', userFollow);
+router.post('/:followerId/unfollow/:followedId', userUnfollow);
 
 export default router;
