@@ -10,16 +10,17 @@ export interface IPosts extends Document
 }
 
 const postsSchema = new Schema<IPosts>({
-    posterId: {type:String, required:true},
+    posterId: {type:String},
     caption: {type:String, maxlength:1024},
-    medias: {type:[String], required:true},
+    medias: {type:[String]},
     likers: {type:[String], default:[]},
     comments: {type: [
         {
             commenterId: {type: String, required:true},
             commenterUsername: {type: String, required: true},
             content: {type: String, required: true},
-            timestamps: {type: String, default: Date.now()}
+            timestamps: {type: String, default: Date.now()},
+            likes: {type:[String], default: []}
         }
     ]}
 }, {timestamps:true});
