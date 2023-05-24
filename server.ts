@@ -59,10 +59,11 @@ app.get('/api/jwtid', requireAuth, (req:express.Request, res:express.Response) =
 //Import routes
 import authRoutes from "./src/routes/auth.routes";
 import userRoutes from "./src/routes/user.routes";
+import postsRoutes from "./src/routes/posts.routes";
 //Routes
 app.use('/api/auth/', authRoutes);
 app.use('/api/user/', requireAuth, userRoutes);
-
+app.use("/api/post", requireAuth, postsRoutes);
 
 app.listen(sanitizedConfig.PORT, () => {
     console.log(`[Nexagram] API is UP ! Listening on ${sanitizedConfig.PORT}`);
