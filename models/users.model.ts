@@ -18,6 +18,7 @@ export interface IUser extends Document
     follow:[string],
     followers:[string],
     bio:string,
+    avatar:string,
     saved_posts: object,
     settings: ISettings
 };
@@ -35,6 +36,7 @@ const userSchema = new Schema<IUser>({
     follow: {type: [String], default: []},
     followers: {type: [String], default: []},
     bio: {type: String, maxlength: 1024},
+    avatar: {type: String, default:"./default.png"},
     settings: {type: {
         isPrivate: {type: Boolean, default: false},
         theme: {type: String, default: "light_default"},
