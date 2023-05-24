@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { isEmpty } from "../utils/isEmpty";
 import userModel from "../../models/users.model";
+import { registerErrors } from "../errors/auth.errors";
 
 export const register = async(req:Request, res:Response) => {
     const { email, username, password, fullname } : { email:string, username:string, password:string, fullname:string } = req.body;
@@ -15,6 +16,7 @@ export const register = async(req:Request, res:Response) => {
         const user = await userModel.create({email, password, username, full_name : fullname});
         return res.status(201).json({user:user._id});
     } catch (error) {
-      //TODO  
+        const errors = registerErrors(error);
+        return res.status(400).send({errors});
     };
 };

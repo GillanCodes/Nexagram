@@ -1,5 +1,5 @@
-const registerErrors = (errors:any) => {
-
+const registerErrors = (error:any) => {
+    return error;
 }
 
 export {registerErrors};
