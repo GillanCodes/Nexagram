@@ -48,12 +48,20 @@ const corsOptions:Object = {
 //init cors
 app.use(cors(corsOptions));
 
+//Import middlewares
+import {checkUser, requireAuth} from "./middlewares/auth.middleware";
+//Use middlewares
+app.use(checkUser);
+app.get('/api/jwtid', requireAuth, (req:express.Request, res:express.Response) => {
+    res.status(201).send(res.locals.user.id);
+});
+
 //Import routes
 import authRoutes from "./src/routes/auth.routes";
 import userRoutes from "./src/routes/user.routes";
 //Routes
 app.use('/api/auth/', authRoutes);
-app.use('/api/user/', userRoutes);
+app.use('/api/user/', requireAuth, userRoutes);
 
 
 app.listen(sanitizedConfig.PORT, () => {
