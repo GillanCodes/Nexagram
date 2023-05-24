@@ -21,7 +21,8 @@ export const getPosts = async (req:Request, res:Response) => {
 
 export const createPost = async (req:any, res:Response) => {
     const { id, caption } : {id:string, caption:string} = req.body;
-    const { files } = req.files;
+    const files = req.files;
+    
     try {
         if (!isValidObjectId(id)) throw Error('post_create_invalid_format_id');
         if (isEmpty(caption)) throw Error('post_create_empty_caption');
@@ -49,6 +50,28 @@ export const createPost = async (req:any, res:Response) => {
         }).catch((err) => {
             throw Error(err);
         });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deletePost = async (req:Request, res:Response) => {
+    const { id } = req.params;
+    try {
+        if(!isValidObjectId(id)) throw Error('post_delete_invalid_format_id');
+        
+        const post = await postsModel.findById(id);
+        if(isEmpty(post)) throw Error('post_delete_not_found');
+
+        await post?.medias.map( async (media) => {
+            await fs.rm(`${sanitizedConfig.CDN_PATH}/posts/${media}`, (err:any) => {
+                if (err) throw Error(err);
+            });
+        });
+
+        await postsModel.findByIdAndDelete(id);
+        return res.status(201).send({id});
+
     } catch (error) {
         console.log(error);
     }

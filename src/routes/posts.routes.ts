@@ -6,6 +6,7 @@ const upload = multer();
 
 import {
     createPost, 
+    deletePost, 
     getPosts, 
     likePost,
     unlikePost
@@ -13,9 +14,11 @@ import {
 
 router.get('/all', getPosts);
 
-router.post('/', upload.fields([{name: "files", maxCount: 10}]), createPost);
+router.post('/', upload.array("files", 10), createPost);
 
 router.patch('/:id/like', likePost);
 router.patch('/:id/unlike', unlikePost);
+
+router.delete('/:id', deletePost);
 
 export default router;
