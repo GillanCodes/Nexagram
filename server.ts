@@ -56,6 +56,8 @@ app.get('/api/jwtid', requireAuth, (req:express.Request, res:express.Response) =
     res.status(201).send(res.locals.user.id);
 });
 
+app.use("/cdn", express.static(sanitizedConfig.CDN_PATH));
+
 //Import routes
 import authRoutes from "./src/routes/auth.routes";
 import userRoutes from "./src/routes/user.routes";
