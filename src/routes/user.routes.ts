@@ -12,7 +12,8 @@ import {
     changeUserPicture,
     changeUserSettings,
     userFollow,
-    userUnfollow
+    userUnfollow,
+    privateFollowAccept
 } from "../controllers/user.controller";
 
 router.get('/all', getUsers);
@@ -25,5 +26,6 @@ router.patch('/:id/settings', changeUserSettings);
 
 router.post('/:followerId/follow/:followedId', userFollow);
 router.post('/:followerId/unfollow/:followedId', userUnfollow);
+router.post('/:followerId/acceptrequest/:followedId', privateFollowAccept);
 
 export default router;

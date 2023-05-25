@@ -4,6 +4,7 @@ import { isValidObjectId } from "mongoose";
 import { isEmpty } from "../utils/isEmpty";
 import * as fs from "fs";
 import sanitizedConfig from "../../config/config";
+import notificationModel from "../../models/notification.model";
 
 /**
  * @method GET
@@ -183,7 +184,15 @@ export const userFollow = async (req:Request, res:Response) => {
 
         if (followed.settings.isPrivate)
         {
-            //TODO
+            await notificationModel.create({
+                target: followedId,
+                type: "follow_request",
+                content: followerId
+            }).then((data) => {
+                return res.status(201).send((data));
+            }).catch((err) => {
+                throw Error(err);
+            })
         }
         else
         {
@@ -219,28 +228,45 @@ export const userUnfollow = async (req:Request, res:Response) => {
         const followed:any = await userModel.findOne({_id: followedId});
         if (isEmpty(followed)) throw Error('user_follow_user_not_found_followed');
 
-        if (followed.settings.isPrivate)
-        {
-            //TODO
-        }
-        else
-        {
-            userModel.findByIdAndUpdate(followerId, {
-                $pull:{
-                    follow: followedId
+        userModel.findByIdAndUpdate(followerId, {
+            $pull:{
+                follow: followedId
+            }
+        }, {new:true, upsert:true}).then((data) => {
+            userModel.findByIdAndUpdate(followedId, {
+                $pull: {
+                    followers: followerId
                 }
-            }, {new:true, upsert:true}).then((data) => {
-                userModel.findByIdAndUpdate(followedId, {
-                    $pull: {
-                        followers: followerId
-                    }
-                }).then(() => {
-                    return res.status(200).send(data);
-                }).catch((err) => {throw Error(err)}) //send err to try catch
+            }).then(() => {
+                return res.status(200).send(data);
             }).catch((err) => {throw Error(err)}) //send err to try catch
-
+        }).catch((err) => {throw Error(err)}) //send err to try catch
             //TODO : Add notification display
-        };
+    } catch (error) {
+        console.log(error);
+    };
+};
+
+export const privateFollowAccept = async (req:Request, res:Response) => {
+    const { followerId, followedId } = req.params;
+
+    try {
+        if (res.locals.user._id.toString() !== followerId) throw Error('not_an_author_request');
+        if (!isValidObjectId(followerId)) throw Error('user_follow_invalid_format_followerId');
+        if (!isValidObjectId(followedId)) throw Error('user_follow_invalid_format_followedId');
+
+        const notif = await notificationModel.find({target:followedId, type:"request", content:followerId});
+        if(isEmpty(notif)) throw Error('no_notification_request');
+
+        userModel.findByIdAndUpdate(followedId, {
+            $pull: {
+                followers: followerId
+            }
+        }).then((data) => {
+            return res.status(201).send(data);
+        }).catch((err) => {
+            throw Error(err);
+        });
     } catch (error) {
         console.log(error);
     };
