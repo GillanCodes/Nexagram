@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { getUsers } from "./actions/users.action";
 import { getUser } from "./actions/user.action";
+import { UIdContext } from "./App.context";
 
 function App() {
 
@@ -33,9 +34,13 @@ function App() {
   }, [UId, dispatch])
 
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <>
+      <UIdContext.Provider value={UId}>
+        <div className="App">
+          <Routes />
+        </div>
+      </UIdContext.Provider>
+    </>
   );
 }
 
