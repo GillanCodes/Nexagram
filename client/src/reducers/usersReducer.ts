@@ -1,5 +1,5 @@
 import { GET_USERS } from "../actions/users.action";
-import { IAction } from "./reducer.interfaces";
+import { IAction } from "../interfaces/action.interfaces";
 
 const initialState:object = {};
 
