@@ -6,6 +6,7 @@ import axios from "axios";
 import { getUsers } from "./actions/users.action";
 import { getUser } from "./actions/user.action";
 import { UIdContext } from "./App.context";
+import { getAllPosts } from "./actions/posts.action";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
     {
       dispatch(getUser(UId));
       dispatch(getUsers());
+      dispatch(getAllPosts());
     }
 
   }, [UId, dispatch])
