@@ -29,7 +29,7 @@ export interface UserModel extends Model<IUser>
 }
 
 const userSchema = new Schema<IUser>({
-    username: {type:String, required:true, maxlength:32, minlength:4},
+    username: {type:String, required:true, maxlength:32, minlength:4, unique:true},
     password: {type:String, required:true, maxlength: 255, minlength: 8},
     email: {type:String, required:true, validate:isEmail},
     fullname: {type: String, maxlength:32},
