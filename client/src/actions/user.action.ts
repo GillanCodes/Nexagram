@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_USER = "GET_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
 export const getUser = (UId:string) => {
     return (dispatch:any) => {
@@ -15,3 +16,21 @@ export const getUser = (UId:string) => {
         });
     };
 };
+
+export const updateUser = (data:any) => {
+    return (dispatch:any) => {
+        return axios({
+            method:"PATCH",
+            url: `${process.env.REACT_APP_API_URL}/user/${data._id}`,
+            withCredentials:true,
+            data: {
+                bio: data.bio,
+                fullname: data.fullname
+            }
+        }).then((res) => {
+            dispatch({type:UPDATE_USER, payload: res.data});
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+}

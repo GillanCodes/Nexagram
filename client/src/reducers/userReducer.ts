@@ -1,4 +1,4 @@
-import { GET_USER } from "../actions/user.action";
+import { GET_USER, UPDATE_USER } from "../actions/user.action";
 import { IAction } from "../interfaces/action.interfaces";
 
 const initialState:object = {};
@@ -8,6 +8,8 @@ export default function userReducer(state = initialState, action:IAction)
     switch(action.type)
     {
         case GET_USER:
+            return action.payload
+        case UPDATE_USER:
             return action.payload
         default:
             return state;

@@ -4,12 +4,17 @@ import { useParams } from 'react-router-dom'
 import { isEmpty } from '../../Utils';
 import { IUser } from '../../interfaces/user.interface';
 import ProfileGrid from './ProfileGrid';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../actions/user.action';
 
 export default function Profile() {
 
     const { username } = useParams();
+
     const usersData = useSelector((state:any) => state.usersReducer);
     const userData:IUser = useSelector((state:any) => state.userReducer);
+
+    const dispatch:any = useDispatch();
 
     const [state, setState] = useState({
         isLoad: false,
@@ -19,10 +24,15 @@ export default function Profile() {
     });
 
     const [userState, setUserState] = useState({
-        username: "",
+        _id: "",
         bio: "",
         fullname: ""
     });
+
+    const updateUserHandle = () => {
+        dispatch(updateUser(userState));
+        setState(state => ({...state, editMode: false}));
+    }
 
     const modalHandle = () => {
         setState(state => ({...state, }))
@@ -34,7 +44,7 @@ export default function Profile() {
         if (!isEmpty(userData) && userData.username === username)
         {
             setState(state => ({...state, isOwner: true}));
-            setUserState(state => ({...state, username:userData.username, bio:userData.bio, fullname:userData.fullname}));
+            setUserState(state => ({...state, _id: userData._id, bio:userData.bio, fullname:userData.fullname}));
         }
     }, [usersData, userData]);
 
@@ -50,18 +60,14 @@ export default function Profile() {
                                 </div>
                                 <div className="infos">
                                     <div className="user">
-                                        {state.editMode ? (
-                                            <input type="text" value={userState.username} onChange={(e) => setUserState(userState => ({...userState, username:e.target.value}))} className="input" />
-                                        ) : (
-                                            <h2>{userState.username}</h2>
-                                        )}
+                                        <h2>{userData.username}</h2>
                                         {state.editMode ? (
                                             <input type="text" value={userState.fullname} onChange={(e) => setUserState(userState => ({...userState, fullname: e.target.value}))} className="input" />
                                         ) : (
                                             <h3>{userState.fullname}</h3>
                                         )}
                                         <button className='button'>Follow</button>
-                                        {state.isOwner && (<button className='button' onClick={() => setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}
+                                        {state.isOwner && (<button className='button' onClick={() => state.editMode ? updateUserHandle() : setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}
                                     </div>
                                     <div className="stats">
                                         <div className="stats-content">
