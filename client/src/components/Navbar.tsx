@@ -14,6 +14,10 @@ export default function Navbar() {
             setState({...state, isLogged:true});
     }, [userData]);
 
+    const logoutHandle = () => {
+
+    }
+
     return (
         <nav className="main-nav">
             <div className="container">
@@ -33,6 +37,9 @@ export default function Navbar() {
                                 <NavLink className={"item"} to={"/profile"}>
                                     {userData.username}
                                 </NavLink>
+                                <a className="item" onClick={logoutHandle}>
+                                    Logout
+                                </a>
                             </>
                         )}
                         
