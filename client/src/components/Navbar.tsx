@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { isEmpty } from '../Utils';
@@ -44,7 +44,7 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <NavLink className={"item"} to={"/profile"}>
+                                <NavLink className={"item"} to={`/u/${userData.username}`}>
                                     {userData.username}
                                 </NavLink>
                                 <a className="item" onClick={logoutHandle}>
