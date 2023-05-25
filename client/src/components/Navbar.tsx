@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { isEmpty } from '../Utils';
+import axios from 'axios';
 
 export default function Navbar() {
 
@@ -15,8 +16,17 @@ export default function Navbar() {
     }, [userData]);
 
     const logoutHandle = () => {
-
-    }
+        axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_API_URL}/auth/logout`,
+            withCredentials:true
+        }).then((res) => {
+            const win:Window = window;
+            win.location = '/';
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
 
     return (
         <nav className="main-nav">
@@ -42,7 +52,6 @@ export default function Navbar() {
                                 </a>
                             </>
                         )}
-                        
                     </div>
                 </div>
             </div>
