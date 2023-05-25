@@ -7,10 +7,10 @@ export default function Auth() {
     const [tab, setTab] = useState(0);
 
     return (
-        <div className="container">
+        <div className="auth-box-container">
             <div className="tabs">
-                <p onClick={() => setTab(0)}>Login</p>
-                <p onClick={() => setTab(1)}>Register</p>
+                <p className={tab === 0 ? 'tab active' : 'tab'} onClick={() => setTab(0)}>Login</p>
+                <p className={tab === 1 ? 'tab active' : 'tab'} onClick={() => setTab(1)}>Register</p>
             </div>
             <div>
                 {tab === 0 && (<Login />)}            

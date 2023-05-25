@@ -26,12 +26,14 @@ export default function Login() {
     }
 
     return (
-        <div>
-            <form onSubmit={(e) => submitHandle(e)}>
-                <input type="email" name="email" id="email" onChange={(e) => setState({...state, email:e.target.value})} />
-                <input type="password" name="password" id="password" onChange={(e) => setState({...state, password:e.target.value})} />
-                <input type="submit" value="Login!" />
-            </form>
+        <div className='auth-container'>
+            <div className="content">
+                <form onSubmit={(e) => submitHandle(e)}>
+                    <input className="input" type="email" name="email" id="email" placeholder='Email' onChange={(e) => setState({...state, email:e.target.value})} />
+                    <input className="input" type="password" name="password" id="password" placeholder='Password' onChange={(e) => setState({...state, password:e.target.value})} />
+                    <input className="button" type="submit" value="Login!" />
+                </form>
+            </div>
         </div>
     )
 }
