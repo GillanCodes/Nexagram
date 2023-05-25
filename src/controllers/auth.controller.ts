@@ -44,3 +44,8 @@ export const login = async (req:Request, res:Response) => {
         //TODO
     };
 };
+
+export const logout = (req:Request, res:Response) => {
+    res.cookie("auth", null, {httpOnly: true, maxAge: 1});
+    return res.status(200).send('logout');
+}
