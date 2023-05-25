@@ -1,0 +1,116 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .profile-header
+    {
+        width: 912px;
+        height: 20em;
+        display: flex;
+
+        .avatar
+        {
+            height: 200px;
+            width: 200px;
+
+            img {
+                height: 200px;
+                width: 200px;
+                border-radius: 100%;
+                
+            }
+        }
+
+        .infos {
+            width: 100%;
+
+            margin-left: 3em;
+            
+            .user {
+                margin: 1em 0;
+                display: flex;
+                align-items: center;
+
+                .button {
+                    margin-left: 20px;
+                }
+                
+                h2
+                {
+                    text-transform: capitalize;
+                }
+            }
+            
+            .stats
+            {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin: 1em 0;
+                
+                .stats-content
+                {
+                    width: 200px;
+                    display: flex;
+                    justify-content: space-around;
+                }
+            }
+
+        }
+
+
+    }
+
+    .profile-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
+
+        .profile-feed {
+
+            width: 912px;
+            overflow: hidden;
+
+            .content
+            {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                
+
+                .post
+                {
+                    width: 300px;
+                    height: 300px;
+
+                    margin: 2px;
+                    
+                    .post-cover
+                    {
+                        width: 300px;
+                        height: 300px;
+                        object-fit: cover;
+                    }
+                    .icons
+                    {
+                        display: none;
+                    }
+                }
+
+                .post:hover
+                {
+                    filter: brightness(0.5);
+                    .icons
+                    {
+                        display: block;
+                        position: absolute;
+                        
+                    }
+                }
+            }
+
+        }
+    }
+}
