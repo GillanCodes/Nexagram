@@ -47,6 +47,9 @@ export default function Navbar() {
                                 <NavLink className={"item"} to={`/u/${userData.username}`}>
                                     {userData.username}
                                 </NavLink>
+                                <NavLink className={"item"} to={`/post`}>
+                                    Post
+                                </NavLink>
                                 <a className="item" onClick={logoutHandle}>
                                     Logout
                                 </a>
