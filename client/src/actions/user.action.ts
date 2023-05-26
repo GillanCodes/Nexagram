@@ -34,3 +34,18 @@ export const updateUser = (data:any) => {
         })
     }
 }
+
+export const updateAvatar = (data:object, id:string) => {
+    return (dispatch:any) => {
+        return axios({
+            method:"PATCH",
+            url: `${process.env.REACT_APP_API_URL}/user/${id}/avatar`,
+            withCredentials:true,
+            data
+        }).then((res) => {
+            dispatch({type:UPDATE_USER, payload: res.data});
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+}

@@ -1,0 +1,46 @@
+.avatar-modal
+{
+    height: 100vh;
+    width: 100vw;
+
+    z-index: 9;
+    display: flex;
+    
+    position: fixed;
+
+    justify-content: center;
+
+
+    background-color: rgba($color: #000000, $alpha: 0.4);
+
+    .avatar-modal-container
+    {
+        display: flex;
+        width: 900px;
+        justify-content: center;
+        align-items: center;
+
+        .avatar-modal-content
+        {
+            .cropping 
+            {
+                .crop-container 
+                {
+                    .crop 
+                    {
+                        height: 200px;
+                        width: 200px;
+                        position: relative;
+                    }
+                    
+                    .zoom 
+                    {
+                        height: 50px;
+                        width: 200px;
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
+}

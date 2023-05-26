@@ -25,6 +25,7 @@ export const register = async(req:Request, res:Response) => {
         const user = await userModel.create({email, password, username, fullname});
         return res.status(201).json({user:user._id});
     } catch (error) {
+        console.log(error);
         const errors = registerErrors(error);
         return res.status(400).send({errors});
     };

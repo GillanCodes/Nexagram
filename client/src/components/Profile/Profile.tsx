@@ -6,6 +6,7 @@ import { IUser } from '../../interfaces/user.interface';
 import ProfileGrid from './ProfileGrid';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../actions/user.action';
+import UploadAvatar from './Modals/UploadAvatar';
 
 export default function Profile() {
 
@@ -35,7 +36,7 @@ export default function Profile() {
     }
 
     const modalHandle = () => {
-        setState(state => ({...state, }))
+        setState(state => ({...state, avatarMode:!state.avatarMode}))
     }
 
     useEffect(() => {
@@ -56,7 +57,7 @@ export default function Profile() {
                         <div className="profile-page">
                             <div className="profile-header">
                                 <div className="avatar">
-                                    <img src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="avatar" onClick={() => state.isOwner && modalHandle} />
+                                    <img src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="avatar" onClick={() => state.isOwner && modalHandle()} />
                                 </div>
                                 <div className="infos">
                                     <div className="user">
@@ -107,7 +108,8 @@ export default function Profile() {
                             </div>
                         </div>
                     );
-            })} 
+            })}
+            {state.avatarMode && ( <UploadAvatar userData={userData} setState={setState} state={state} /> )} 
         </div>
     )
 }
