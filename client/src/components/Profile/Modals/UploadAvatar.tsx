@@ -130,6 +130,7 @@ export default function UploadAvatar({userData, setState, state}: {userData:IUse
   return (
     <div className='avatar-modal'>
       <div className="avatar-modal-container">
+        <p className='close-icon' onClick={() => setState((state:any) => ({...state, avatarMode:false}))}>CLOSE</p>
         <div className="avatar-modal-content">
           <input type="file" onChange={(e:any) => setImg(URL.createObjectURL(e.target.files[0]))}/>
           <div className='cropping'>
