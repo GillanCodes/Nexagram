@@ -61,12 +61,14 @@ export default function Profile() {
                                 </div>
                                 <div className="infos">
                                     <div className="user">
-                                        <h2>{userData.username}</h2>
-                                        {state.editMode ? (
-                                            <input type="text" value={userState.fullname} onChange={(e) => setUserState(userState => ({...userState, fullname: e.target.value}))} className="input" />
-                                        ) : (
-                                            <h3>{userState.fullname}</h3>
-                                        )}
+                                        <div className="userna">
+                                            <h2>{userData.username}</h2>
+                                            {state.editMode ? (
+                                                <input type="text" value={userState.fullname} onChange={(e) => setUserState(userState => ({...userState, fullname: e.target.value}))} className="input" />
+                                            ) : (
+                                                <h3>{userState.fullname}</h3>
+                                            )}
+                                        </div>
                                         <button className='button'>Follow</button>
                                         {state.isOwner && (<button className='button' onClick={() => state.editMode ? updateUserHandle() : setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}
                                     </div>
@@ -80,7 +82,7 @@ export default function Profile() {
                                         {state.editMode ? (
                                             <textarea style={{resize: "none"}} name="bio" cols={60} rows={5} value={userState.bio} onChange={(e) => setUserState(userState => ({...userState, bio:e.target.value}))}></textarea>
                                         ) : (
-                                            <p>{userState.bio}</p>
+                                            <p style={{whiteSpace: 'pre-wrap'}} >{userState.bio}</p>
                                         )}
                                     </div>
                                 </div> 
