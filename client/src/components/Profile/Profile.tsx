@@ -52,7 +52,7 @@ export default function Profile() {
     return (
         <div className='profile-container'>
             {state.isLoad && usersData.map((user:IUser) => {
-                if (user.username === username?.toLocaleLowerCase()) 
+                if (user.username?.toLocaleLowerCase() === username?.toLocaleLowerCase()) 
                     return (
                         <div className="profile-page">
                             <div className="profile-header">
