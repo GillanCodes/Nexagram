@@ -22,7 +22,13 @@ export const register = async(req:Request, res:Response) => {
         if (username.length > 32) throw Error('register_field_too_long_username');
         if (password.length > 255) throw Error('register_field_too_long_password');
 
-        const user = await userModel.create({email, password, username, fullname});
+        const settings = {
+            isPrivate: false,
+            lang: "EN_us",
+            theme: "default_light"
+        }
+
+        const user = await userModel.create({email, password, username, fullname, settings});
         return res.status(201).json({user:user._id});
     } catch (error) {
         console.log(error);
