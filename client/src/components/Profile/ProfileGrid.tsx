@@ -19,6 +19,11 @@ export default function ProfileGrid({user}:{user:IUser}) {
     }
   }, [postsData]);
 
+  const postDisplay = (id:string) => {
+    const win:Window = window;
+    win.location = `/p/${id}`
+  }
+
   return (
     <div className='profile-feed'>
       <div className="content">
@@ -27,7 +32,7 @@ export default function ProfileGrid({user}:{user:IUser}) {
             {postsData.map((post:any) => {
               if (post.posterId === user._id) {
                 return (
-                  <div className="post">
+                  <div className="post" onClick={() => postDisplay(post._id)}>
                     <div className="icons">
                       <p>{post.likers.length} LIKES !</p>
                       <p>{post.comments.length} Coms</p>
