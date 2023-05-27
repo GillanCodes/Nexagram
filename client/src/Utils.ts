@@ -6,3 +6,8 @@ export const isEmpty = (value:any) => {
         (typeof value === "string" && value.trim().length === 0)
     );
 };
+
+export const convertDatetoTime = (date:string) => {
+    var timesptamp = new Date(date).getTime();
+    return timesptamp;
+}

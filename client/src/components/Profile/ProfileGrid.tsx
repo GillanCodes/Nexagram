@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IUser } from '../../interfaces/user.interface'
 import { useSelector } from 'react-redux'
-import { isEmpty } from '../../Utils';
+import { convertDatetoTime, isEmpty } from '../../Utils';
 
 export default function ProfileGrid({user}:{user:IUser}) {
 
@@ -29,7 +29,7 @@ export default function ProfileGrid({user}:{user:IUser}) {
       <div className="content">
           {state.isLoad && (
           <>
-            {postsData.map((post:any) => {
+            {postsData.sort((a:any,b:any) => convertDatetoTime(b.createdAt) - convertDatetoTime(a.createdAt)).map((post:any) => {
               if (post.posterId === user._id) {
                 return (
                   <div className="post" onClick={() => postDisplay(post._id)}>
