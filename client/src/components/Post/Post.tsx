@@ -74,17 +74,19 @@ export default function Post() {
                                         })}
                                     </div>
                                     <div className="post-box-body">
-                                        <div className="icons">
-                                            <p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev")}>previous</p>
-                                            <p id="post-next-btn" onClick={(e) => postDisplay(e, "next")}>next</p>
-                                        </div>
+                                        {post.medias.length > 1 && (
+                                            <div className="icons">
+                                                {imgIndex !== 0 && (<p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev")}>previous</p>)} 
+                                                {imgIndex !== post.medias.length - 1 && (<p id="post-next-btn" onClick={(e) => postDisplay(e, "next")}>next</p>)}
+                                            </div>
+                                        )}
                                         <div className="post-body" id="post-img-box">
                                             {post.medias.map((media:string) => {
                                                 return <img className='medias' src={`${process.env.REACT_APP_CDN_URL}/posts/${media}`} alt="image pots" />
                                             })}
                                         </div>
                                         <div className="paginations">
-                                            {post.medias.map((media:string, key:number) => {
+                                            {post.medias.length > 1 && post.medias.map((media:string, key:number) => {
                                                 return <div id={`pagination-${key}`} className={imgIndex === key ? 'pagination active' : 'pagination'}></div>
                                             })}
                                         </div>

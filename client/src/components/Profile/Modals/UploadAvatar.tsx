@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
 import { Slider } from "@mui/material"
-import axios from 'axios';
 import { IUser } from '../../../interfaces/user.interface';
 import { useDispatch } from 'react-redux';
 import { updateAvatar } from '../../../actions/user.action';
