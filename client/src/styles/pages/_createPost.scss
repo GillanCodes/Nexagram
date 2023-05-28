@@ -1,0 +1,45 @@
+.post-cropper
+{
+
+    display: flex;
+
+    .post-creator-content
+    {
+        .buttons
+        {
+            display: flex;
+            justify-content: center;
+            .next-button
+            {
+                background-color: rgb(169, 169, 255);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                cursor: pointer;
+            }            
+        }
+
+        .cropping 
+        {
+            margin: 10px;
+
+            .crop-container 
+            {
+                .crop 
+                {
+                    height: 500px;
+                    width: 500px;
+                    position: relative;
+                }
+                
+                .zoom 
+                {
+                    height: 50px;
+                    width: 200px;
+                    position: relative;
+                }
+            }
+        }
+    }
+}

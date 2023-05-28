@@ -118,7 +118,7 @@ export default function PostCropper({img, imageDisplay}: {img:any, imageDisplay:
     <div className='post-creator-content'>
         <div className="buttons">
             {/* <p onClick={() => imageDisplay("prev")}>Prev</p> */}
-            <p onClick={() => showCroppedImage()}>Next</p>
+            <p className='button next-button' onClick={() => showCroppedImage()}>Next</p>
         </div>
         <div className="cropping">
             <div className="crop-container">

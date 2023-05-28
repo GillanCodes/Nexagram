@@ -79,7 +79,7 @@ export default function CreatePost() {
     return (
         <div className='post-container'>        
             <div className="post-content">
-                <input type="file" multiple onChange={(e) => filesAddHandle(e.target.files)}  />
+                {!state.isLoad && (<input type="file" multiple onChange={(e) => filesAddHandle(e.target.files)}  />)} 
                 {state.isLoad && (
                     <>
                         
