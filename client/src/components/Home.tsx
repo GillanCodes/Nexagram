@@ -1,5 +1,9 @@
+import FollowFeed from "./Feed/FollowFeed";
+
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <FollowFeed />
+    </div>
   )
 }

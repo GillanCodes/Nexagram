@@ -1,0 +1,172 @@
+$post-view-box-height: 800px;
+$post-view-box-width: 700px;
+
+$post-view-header-height: 70px;
+$post-view-footer-height: 70px;
+
+.post-view-container {
+
+    // height: calc(100vh - 70px - 100px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px 0;
+
+    .post-box
+    {
+        width: $post-view-box-width;
+        height: $post-view-box-height;
+
+        overflow: hidden;
+
+        border: 1px#7c7c7c solid;
+        border-radius: 10px;
+
+        .post-header
+        {
+
+            display: flex;
+            align-items: center;
+            height: $post-view-header-height;
+
+            .avatar
+            {
+                height: 48px;
+                width: 48px;
+                object-fit: cover;
+                border-radius: 100%;
+
+                padding: 10px;
+            }
+
+            .username
+            {
+                text-transform: capitalize;
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+
+        }
+
+        .post-box-body
+        {
+           
+            .icons
+            {
+                display: flex;
+
+                position: absolute;
+                margin-top: calc(($post-view-box-height - $post-view-header-height)/2 - 15px);
+                width: $post-view-box-width;
+                // transform: translateY(-50%);
+                // top: 50%;
+
+                width: $post-view-box-width;
+
+                p
+                {
+                    color: white;
+                    background-color: rgba($color: #000000, $alpha: 0.4);
+                    width: 90px;
+                    height: 30px;
+                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 10px;
+
+                    cursor: pointer;
+
+                    -webkit-user-select: none; /* Safari */        
+                    -moz-user-select: none; /* Firefox */
+                    -ms-user-select: none; /* IE10+/Edge */
+                    user-select: none; /* Standard */
+
+
+                }
+
+                #post-next-btn
+                {
+                    position: absolute;
+                    right: 10px;
+                }
+
+                #post-prev-btn
+                {
+                    position: absolute;
+                    left: 10px;
+                }
+
+            }
+    
+        }
+
+        .post-body
+        {
+            height: calc($post-view-box-height - $post-view-header-height - $post-view-footer-height);
+            width: calc($post-view-box-width * 10);
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+
+            margin-left: 0px;
+
+            transition-duration: 0.3s;
+
+
+            .medias
+            {
+                width: $post-view-box-width;
+                height: $post-view-box-height;
+                object-fit: cover;
+            }
+        }
+
+        .paginations 
+        {
+            position: absolute;
+            // top: calc(($post-view-box-height + $post-view-header-height) + 110px);
+            margin-top: -30px;
+            font-weight: 700;
+            font-size: 3em;
+            display: flex;
+            justify-content: center;
+
+            width: 150px;
+
+            left: calc(50% - (150px/2));
+
+            .pagination
+            {
+                height: 0.2em;
+                width: 0.2em;
+                border-radius: 100%;
+                background-color: rgba($color: #FFFFFF, $alpha: 0.7);
+                margin: 0 2px;
+                transition-duration: 0.2s;
+                
+            }
+
+            .active
+            {
+                background-color: rgba($color: #000000, $alpha: 0.7);
+                transition-duration: 0.2s;
+            }
+        }
+    }
+
+    .post-footer
+    {
+        height: $post-view-footer-height;
+        display: flex;
+        align-items: center;
+
+        p
+        {
+            margin: 0px 10px;
+        }
+    }
+
+}

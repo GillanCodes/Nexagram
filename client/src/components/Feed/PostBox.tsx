@@ -88,6 +88,10 @@ export default function PostBox({ post } : { post: any}) {
                                 })}
                             </div>
                         </div>
+                        <div className="post-footer">
+                            <p>{post.likers.length} Likes</p>
+                            <p>{post.comments.length} Coms</p>
+                        </div>
                     </div>
                 </>
             )}
