@@ -28,7 +28,6 @@ export default function PostBox({ post } : { post: any}) {
         const boxWidth = 700;
 
         if (type === "next")
-        console.log("next")
         {
             if (img >= images.length - 1)
                 return;
@@ -40,7 +39,6 @@ export default function PostBox({ post } : { post: any}) {
 
         if (type === "prev")
         {
-            console.log("prev")
             if (img <= 0)
                 return
             
@@ -48,8 +46,6 @@ export default function PostBox({ post } : { post: any}) {
             img = imgIndex - 1; 
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
         }
-
-        console.log("img", img);
     }
 
     return (
