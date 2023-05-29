@@ -49,6 +49,14 @@ export default function Profile() {
         }
     }, [usersData, userData]);
 
+    const followHandle = () => {
+        dispatch();
+    }
+
+    const unfollowHandle = () => {
+        dispatch();
+    }
+
     return (
         <div className='profile-container'>
             {state.isLoad && usersData.map((user:IUser) => {
@@ -69,7 +77,21 @@ export default function Profile() {
                                                 <h3>{user.fullname}</h3>
                                             )}
                                         </div>
-                                        {!state.isOwner && (<button className='button'>Follow</button>)}
+                                        {!state.isOwner && (
+                                            <>
+                                                {!isEmpty(userData) ? (
+                                                    <>
+                                                    {user.followers.includes(userData._id) ? (
+                                                        <button className='button' onClick={followHandle}>Follow</button>
+                                                    ) : (
+                                                        <button className='button' onClick={unfollowHandle}>Unfollow</button>
+                                                    )}
+                                                    </>
+                                                ) : (
+                                                    <p className='button'>Login to follow</p>
+                                                )}
+                                           </>
+                                        )}
                                         {state.isOwner && (<button className='button' onClick={() => state.editMode ? updateUserHandle() : setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}
                                     </div>
                                     <div className="stats">
