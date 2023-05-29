@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
 import { isEmpty } from '../../Utils';
 
 export default function PostBox({ post } : { post: any}) {
@@ -28,20 +27,14 @@ export default function PostBox({ post } : { post: any}) {
         const boxWidth = 700;
 
         if (type === "next")
-        {
-            if (img >= images.length - 1)
-                return;
-   
+        {   
             setImgIndex(imgIndex + 1);
             img = imgIndex + 1;
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
         }
 
         if (type === "prev")
-        {
-            if (img <= 0)
-                return
-            
+        {            
             setImgIndex(imgIndex-1);
             img = imgIndex - 1; 
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
@@ -60,7 +53,7 @@ export default function PostBox({ post } : { post: any}) {
                                     return (
                                         <>
                                             <img className='avatar' src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
-                                            <p className='username'>{user.username}</p>
+                                            <a className='username' href={`/u/${user.username}`}>{user.username}</a>
                                         </>
                                     )
                                 }
