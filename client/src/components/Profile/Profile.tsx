@@ -5,8 +5,9 @@ import { isEmpty } from '../../Utils';
 import { IUser } from '../../interfaces/user.interface';
 import ProfileGrid from './ProfileGrid';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../actions/user.action';
+import { followUser, unfollowUser, updateUser } from '../../actions/user.action';
 import UploadAvatar from './Modals/UploadAvatar';
+import FollowButton from './FollowButton';
 
 export default function Profile() {
 
@@ -21,7 +22,8 @@ export default function Profile() {
         isLoad: false,
         isOwner: false,
         editMode: false,
-        avatarMode: false
+        avatarMode: false,
+        isFollow: false
     });
 
     const [userState, setUserState] = useState({
@@ -49,13 +51,7 @@ export default function Profile() {
         }
     }, [usersData, userData]);
 
-    const followHandle = () => {
-        dispatch();
-    }
 
-    const unfollowHandle = () => {
-        dispatch();
-    }
 
     return (
         <div className='profile-container'>
@@ -79,17 +75,7 @@ export default function Profile() {
                                         </div>
                                         {!state.isOwner && (
                                             <>
-                                                {!isEmpty(userData) ? (
-                                                    <>
-                                                    {user.followers.includes(userData._id) ? (
-                                                        <button className='button' onClick={followHandle}>Follow</button>
-                                                    ) : (
-                                                        <button className='button' onClick={unfollowHandle}>Unfollow</button>
-                                                    )}
-                                                    </>
-                                                ) : (
-                                                    <p className='button'>Login to follow</p>
-                                                )}
+                                               <FollowButton userData={userData} usersData={user} />
                                            </>
                                         )}
                                         {state.isOwner && (<button className='button' onClick={() => state.editMode ? updateUserHandle() : setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}

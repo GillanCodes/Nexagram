@@ -200,13 +200,13 @@ export const userFollow = async (req:Request, res:Response) => {
                 $push:{
                     follow: followedId
                 }
-            }, {upsert:true, new:true}).then((data) => {
+            }, {upsert:true, new:true}).then((userData) => {
                 userModel.findByIdAndUpdate(followedId, {
                     $push: {
                         followers: followerId
                     }
-                }).then(() => {
-                    return res.status(200).send(data);
+                }).then((usersData) => {
+                    return res.status(200).json({userData, usersData});
                 }).catch((err) => {throw Error(err)}) //send err to try catch
             }).catch((err) => {throw Error(err)}) //send err to try catch
 
@@ -232,13 +232,13 @@ export const userUnfollow = async (req:Request, res:Response) => {
             $pull:{
                 follow: followedId
             }
-        }, {new:true, upsert:true}).then((data) => {
+        }, {new:true, upsert:true}).then((userData) => {
             userModel.findByIdAndUpdate(followedId, {
                 $pull: {
                     followers: followerId
                 }
-            }).then(() => {
-                return res.status(200).send(data);
+            }).then((usersData) => {
+                return res.status(200).json({userData, usersData});
             }).catch((err) => {throw Error(err)}) //send err to try catch
         }).catch((err) => {throw Error(err)}) //send err to try catch
             //TODO : Add notification display
