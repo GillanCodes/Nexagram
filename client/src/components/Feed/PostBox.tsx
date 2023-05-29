@@ -3,16 +3,15 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { isEmpty } from '../../Utils';
 
-var img = 0;
-
 export default function PostBox({ post } : { post: any}) {
+    var img:number = 0;
 
     const postsData = useSelector((state:any) => state.postsReducer);
     const userData = useSelector((state:any) => state.usersReducer);
 
     const [state, setState] = useState({
         isLoad: false
-    })
+    });
 
     const [imgIndex, setImgIndex] = useState(0);
 
@@ -23,36 +22,38 @@ export default function PostBox({ post } : { post: any}) {
         };
     }, [postsData]);
 
-    const postDisplay = async (e:any, type:string) => {
-        const images = document.getElementsByClassName('medias');
-        const postBody:any = document.getElementById('post-img-box');
-        const prevBtn:any = document.getElementById('post-prev-btn');
-        const nextBtn:any = document.getElementById('post-next-btn');
+    const postDisplay = async (e:any, type:string, id:string) => {
+        const images = post.medias.length;
+        const postBody:any = document.getElementById(`${id}-box`);
         const boxWidth = 700;
 
         if (type === "next")
+        console.log("next")
         {
             if (img >= images.length - 1)
                 return;
    
             setImgIndex(imgIndex + 1);
-            img++
+            img = imgIndex + 1;
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
         }
 
         if (type === "prev")
         {
+            console.log("prev")
             if (img <= 0)
                 return
             
             setImgIndex(imgIndex-1);
-            img--
+            img = imgIndex - 1; 
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
         }
+
+        console.log("img", img);
     }
 
     return (
-        <div className='post-container'>
+        <div className='post-view-container'>
             {state.isLoad && (
                 <>
                     <div className="post-box">
@@ -72,11 +73,11 @@ export default function PostBox({ post } : { post: any}) {
                         <div className="post-box-body">
                             {post.medias.length > 1 && (
                                 <div className="icons">
-                                    {imgIndex !== 0 && (<p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev")}>previous</p>)} 
-                                    {imgIndex !== post.medias.length - 1 && (<p id="post-next-btn" onClick={(e) => postDisplay(e, "next")}>next</p>)}
+                                    {imgIndex !== 0 && (<p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev", post._id)}>previous</p>)} 
+                                    {imgIndex !== post.medias.length - 1 && (<p id="post-next-btn" onClick={(e) => postDisplay(e, "next", post._id)}>next</p>)}
                                 </div>
                             )}
-                            <div className="post-body" id="post-img-box">
+                            <div className="post-body" id={`${post._id}-box`}>
                                 {post.medias.map((media:string) => {
                                     return <img className='medias' src={`${process.env.REACT_APP_CDN_URL}/posts/${media}`} alt="image pots" />
                                 })}
