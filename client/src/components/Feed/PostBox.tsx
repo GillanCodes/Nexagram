@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { isEmpty } from '../../Utils';
+import { useDispatch } from 'react-redux';
+import { likePost, unlikePost } from '../../actions/posts.action';
 
 export default function PostBox({ post } : { post: any}) {
     var img:number = 0;
 
     const postsData = useSelector((state:any) => state.postsReducer);
     const userData = useSelector((state:any) => state.usersReducer);
+
+    const dispatch:any = useDispatch();
 
     const [state, setState] = useState({
         isLoad: false
@@ -39,6 +43,14 @@ export default function PostBox({ post } : { post: any}) {
             img = imgIndex - 1; 
             postBody.style.marginLeft = (boxWidth * -(img)) + "px";
         }
+    }
+
+    const likeHandle = () => {
+        dispatch(likePost(post._id));
+    }
+
+    const unlikeHandle = () => {
+        dispatch(unlikePost(post._id));
     }
 
     return (
@@ -78,8 +90,14 @@ export default function PostBox({ post } : { post: any}) {
                             </div>
                         </div>
                         <div className="post-footer">
-                            <p>{post.likers.length} Likes</p>
-                            <p>{post.comments.length} Coms</p>
+                            <div className="info like">
+                                <p>{post.likers.includes(userData) ? (<i onClick={likeHandle} className="fa-solid fa-heart"></i>) : (<i onClick={unlikeHandle} className="fa-regular fa-heart"></i>)}</p>
+                                <p>{post.likers.length}</p>
+                            </div>
+                            <div className="info comments">
+                                <p><i className="fa-regular fa-heart"></i></p>
+                                <p>{post.comments.length}</p>
+                            </div>
                         </div>
                     </div>
                 </>
