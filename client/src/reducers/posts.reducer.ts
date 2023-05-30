@@ -1,5 +1,4 @@
 import { CREATE_POST, GET_ALL_POSTS, LIKE_POST, UNLIKE_POST } from "../actions/posts.action";
-import { IAction } from "../interfaces/action.interfaces";
 
 const initialState:any = {};
 
