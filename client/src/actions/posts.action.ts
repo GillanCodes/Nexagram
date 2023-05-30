@@ -42,7 +42,7 @@ export const likePost = (id:string) => {
             withCredentials: true,
             url: `${process.env.REACT_APP_API_URL}/post/${id}/like`
         }).then((res) => {
-            dispatch({type: LIKE_POST});
+            dispatch({type: LIKE_POST, payload: res.data});
         }).catch((err) => {
             console.log(err);
         });
@@ -56,7 +56,7 @@ export const unlikePost = (id:string) => {
             withCredentials: true,
             url: `${process.env.REACT_APP_API_URL}/post/${id}/unlike`
         }).then((res) => {
-            dispatch({type: UNLIKE_POST});
+            dispatch({type: UNLIKE_POST, payload: res.data});
         }).catch((err) => {
             console.log(err);
         });

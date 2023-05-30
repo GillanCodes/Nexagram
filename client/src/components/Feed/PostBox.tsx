@@ -8,7 +8,8 @@ export default function PostBox({ post } : { post: any}) {
     var img:number = 0;
 
     const postsData = useSelector((state:any) => state.postsReducer);
-    const userData = useSelector((state:any) => state.usersReducer);
+    const usersData = useSelector((state:any) => state.usersReducer);
+    const userData  = useSelector((state:any) => state.userReducer);
 
     const dispatch:any = useDispatch();
 
@@ -59,7 +60,7 @@ export default function PostBox({ post } : { post: any}) {
                 <>
                     <div className="post-box">
                         <div className="post-header">
-                            {userData.map((user:any) => {
+                            {usersData.map((user:any) => {
                                 if (user._id === post.posterId)
                                 {
                                     return (
@@ -91,7 +92,7 @@ export default function PostBox({ post } : { post: any}) {
                         </div>
                         <div className="post-footer">
                             <div className="info like">
-                                <p>{post.likers.includes(userData) ? (<i onClick={likeHandle} className="fa-solid fa-heart"></i>) : (<i onClick={unlikeHandle} className="fa-regular fa-heart"></i>)}</p>
+                                <p>{post.likers.includes(userData._id) ? (<i onClick={unlikeHandle} className="fa-solid fa-heart"></i>) : (<i onClick={likeHandle} className="fa-regular fa-heart"></i>)}</p>
                                 <p>{post.likers.length}</p>
                             </div>
                             <div className="info comments">
