@@ -95,7 +95,7 @@ export const likePost = async (req:Request, res:Response) => {
             $push: {
                 likers: res.locals.user._id.toString()
             }
-        }).then((data) => {
+        }, {new: true, upsert: true}).then((data) => {
             return res.status(201).send(data);
         }).catch((err) => {
             throw Error(err);
@@ -116,7 +116,7 @@ export const unlikePost = async (req:Request, res:Response) => {
             $pull: {
                 likers: res.locals.user._id.toString()
             }
-        }).then((data) => {
+        }, {new: true, upsert:true}).then((data) => {
             return res.status(201).send(data);
         }).catch((err) => {
             throw Error(err);
