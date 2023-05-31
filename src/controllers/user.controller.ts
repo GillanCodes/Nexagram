@@ -120,7 +120,7 @@ export const changeUserPicture = (req:any, res:Response) => {
         if (!isValidObjectId(id)) throw Error('user_patch_invalid_format_id');
         if (isEmpty(file)) throw Error('user_patch_empty_filed_file');
         if (req.file.mimetype !==  "image/jpg" && req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpeg") throw Error('user_patch_invalid_type_file');
-        if (req.file.size > 500000) throw Error('user_patch_file_max_size');
+        if (req.file.size > 5000000) throw Error('user_patch_file_max_size');
 
         const filename = id + ".png";
         fs.writeFile(`${sanitizedConfig.CDN_PATH}/profile/${filename}`, req.file.buffer, (err:any) => {

@@ -38,7 +38,7 @@ export const createPost = async (req:any, res:Response) => {
 
         await files.map((file:any) => {
             if (file.mimetype !==  "image/jpg" && file.mimetype !== "image/png" && file.mimetype !== "image/jpeg") throw Error('user_patch_invalid_type_file');
-            if (file.size > 500000) throw Error('user_patch_file_max_size');
+            if (file.size > 5000000) throw Error('user_patch_file_max_size');
 
             var filename = `${genUId()}.png`;
             fs.writeFile(`${sanitizedConfig.CDN_PATH}/posts/${filename}`, file.buffer, (err:any) => {
