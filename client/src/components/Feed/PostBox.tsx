@@ -96,7 +96,7 @@ export default function PostBox({ post } : { post: any}) {
                                 <p>{post.likers.length}</p>
                             </div>
                             <div className="info comments">
-                                <p><i className="fa-regular fa-heart"></i></p>
+                                <a href={`/p/${post._id}`}><i className="fa-regular fa-comment"></i></a>
                                 <p>{post.comments.length}</p>
                             </div>
                         </div>
