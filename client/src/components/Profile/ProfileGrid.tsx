@@ -34,8 +34,8 @@ export default function ProfileGrid({user}:{user:IUser}) {
                 return (
                   <div className="post" onClick={() => postDisplay(post._id)}>
                     <div className="icons">
-                      <p>{post.likers.length} LIKES !</p>
-                      <p>{post.comments.length} Coms</p>
+                      <p>{post.likers.length}<i className="fa-solid fa-heart"></i></p>
+                      <p>{post.comments.length}<i className="fa-solid fa-comment"></i></p>
                     </div>
                     <img className='post-cover' src={`${process.env.REACT_APP_CDN_URL}/posts/${post.medias[0]}`} alt="" />
                   </div>
