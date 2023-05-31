@@ -170,6 +170,17 @@ $post-view-footer-height: 70px;
             justify-content: center;
             font-size: 1.2em;
             margin: 0 10px;
+
+            *
+            {
+                margin: 0 2px;
+            }
+
+            a 
+            {
+                text-decoration: none;
+                color: black;
+            }
         }
     }
 
