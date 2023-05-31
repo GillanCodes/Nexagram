@@ -49,6 +49,10 @@ export default function CreatePost() {
         data.append('caption', caption);
         data.append("id", userData._id);
         dispatch(createPost(data));
+        setImgIndexState(0);
+        filesArr = [];
+        dataFile = [];
+        imgIndex = 0;
     };
 
     const imageDisplay = (type:string, file:any) => {
