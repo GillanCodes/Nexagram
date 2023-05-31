@@ -75,8 +75,8 @@ export default function PostBox({ post } : { post: any}) {
                         <div className="post-box-body">
                             {post.medias.length > 1 && (
                                 <div className="icons">
-                                    {imgIndex !== 0 && (<p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev", post._id)}>previous</p>)} 
-                                    {imgIndex !== post.medias.length - 1 && (<p id="post-next-btn" onClick={(e) => postDisplay(e, "next", post._id)}>next</p>)}
+                                    {imgIndex !== 0 && (<p id="post-prev-btn" onClick={(e) => postDisplay(e, "prev", post._id)}><i className="fa-solid fa-arrow-left"></i></p>)} 
+                                    {imgIndex !== post.medias.length - 1 && (<p id="post-next-btn" onClick={(e) => postDisplay(e, "next", post._id)}><i className="fa-solid fa-arrow-right"></i></p>)}
                                 </div>
                             )}
                             <div className="post-body" id={`${post._id}-box`}>
