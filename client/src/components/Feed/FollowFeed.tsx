@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { convertDatetoTime, isEmpty } from '../../Utils';
-import PostBox from './PostBox';
+import PostBox from '../Post/PostBox';
 
 export default function FollowFeed() {
 
