@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { isEmpty } from '../../Utils';
 
-export default function CommentsBox({comments} : {comments:any}) {
+export default function CommentsBox({post} : {post:any}) {
 
     const usersData = useSelector((state:any) => state.usersReducer);
     const userData = useSelector((state:any) => state.userReducer);
@@ -23,9 +23,25 @@ export default function CommentsBox({comments} : {comments:any}) {
         <div className='comments-box'>
             <div className="comments-container">
                 <div className="comments-content">
+                    <div className="comment">
+                        <div className="user">
+                            {usersData.map((user:any) => {
+                                if (user._id === post.posterId)
+                                    return (
+                                        <>
+                                            <img className='avatar' src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
+                                            <p className='username'>{user.username} :</p>
+                                        </>
+                                    )
+                            })} 
+                            <div className="comment-text">
+                                <p>{post.caption}</p>
+                            </div>
+                        </div>
+                    </div>
                     {state.usersLoad ? (
                         <>
-                            {comments.map((comment:any) => {
+                            {post.comments.map((comment:any) => {
                                 return (
                                     <div className="comment">
                                         <div className="user">
@@ -33,8 +49,8 @@ export default function CommentsBox({comments} : {comments:any}) {
                                                 if (user._id === comment.commenterId)
                                                     return (
                                                         <>
-                                                            <img src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
-                                                            <p>{user.username}</p>
+                                                            <img className='avatar' src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
+                                                            <p className='username'>{user.username} :</p>
                                                         </>
                                                     )
                                             })} 
@@ -55,7 +71,9 @@ export default function CommentsBox({comments} : {comments:any}) {
                 <div className="comments-footer">
                     {state.myselfLoad ? (
                         <>
-                            <input type="text" name="" id="" />
+                            <img className="avatar" src={`${process.env.REACT_APP_CDN_URL}/profile/${userData.avatar}`} alt="avatar" />
+                            <input className="comment-input input" type="text" placeholder='My Comment !' />
+                            <button className='send-btn'><i className="fa-solid fa-circle-arrow-right"></i></button>
                         </>
                     ) : (
                         <p>You must be logged to post a comment</p>

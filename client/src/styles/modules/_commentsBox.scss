@@ -4,7 +4,7 @@ $comment-footer-height: 70px;
 .comments-box
 {
     width: 500px;
-    height: $post-view-box-height;
+    height: calc($post-view-box-height);
     border: 1px solid black;
 
 
@@ -15,12 +15,69 @@ $comment-footer-height: 70px;
 
         .comments-content
         {
-            height: calc($post-view-box-height - $comment-footer-height);
+            height: calc($post-view-box-height - $comment-footer-height - 10px);
+
+            .comment
+            {
+
+                margin: 10px 5px;
+
+                .user
+                {
+                    display: flex;
+                    align-items: center;
+                    .avatar
+                    {
+                        height: 48px;
+                        width: 48px;
+                        border-radius: 100%;
+                        object-fit: cover;
+                    }
+                    .username
+                    {
+                        margin: 0 10px 0px 5px;
+                    }
+                }
+            }
         }
 
         .comments-footer
         {
             height: $comment-footer-height;
+            display: flex;
+            align-items: center;
+            margin: 0px 10px;
+            border-top: 1px solid black;
+
+            .avatar
+            {
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+                border-radius: 100%;
+            }
+
+            .comment-input
+            {
+                margin-left: 5px;
+                width: 100%;
+            }
+
+            .send-btn
+            {
+                height: 30px;
+                width: 30px;
+
+                border: none;
+                background-color: #FFF;
+                font-size: 1.4em;
+            }
+
+            .send-btn:hover
+            {
+                color: blue;
+                cursor: pointer;
+            }
         }
     }    
 }

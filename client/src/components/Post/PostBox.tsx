@@ -105,7 +105,7 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
                 </>
             )}
             {comments && (
-                <CommentsBox comments={post.comments} />
+                <CommentsBox post={post} />
             )}
         </div>
     )
