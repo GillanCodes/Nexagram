@@ -27,7 +27,7 @@ export default function FollowFeed() {
                                 if (userData.follow.includes(post.posterId))
                                 {
                                     return (
-                                        <PostBox post={post} />
+                                        <PostBox post={post} comments={false} />
                                     )
                                 }
                             })}

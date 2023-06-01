@@ -27,7 +27,9 @@ export default function Post() {
                     {postsData.map((post:any) => {
                         if (post._id.toString() === id)
                             return (
-                               <PostBox post={post} /> 
+                                <>
+                                    <PostBox post={post} comments={true} />
+                                </> 
                             )
                     })}
                 </>

@@ -1,0 +1,26 @@
+$comment-footer-height: 70px;
+
+
+.comments-box
+{
+    width: 500px;
+    height: $post-view-box-height;
+    border: 1px solid black;
+
+
+    .comments-container
+    {
+        height: 100%;
+        width: 100%;
+
+        .comments-content
+        {
+            height: calc($post-view-box-height - $comment-footer-height);
+        }
+
+        .comments-footer
+        {
+            height: $comment-footer-height;
+        }
+    }    
+}

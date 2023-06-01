@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import { isEmpty } from '../../Utils';
 import { useDispatch } from 'react-redux';
 import { likePost, unlikePost } from '../../actions/posts.action';
+import CommentsBox from './CommentsBox';
 
-export default function PostBox({ post } : { post: any}) {
+export default function PostBox({ post, comments } : { post: any, comments:boolean}) {
     var img:number = 0;
 
     const postsData = useSelector((state:any) => state.postsReducer);
@@ -102,6 +103,9 @@ export default function PostBox({ post } : { post: any}) {
                         </div>
                     </div>
                 </>
+            )}
+            {comments && (
+                <CommentsBox comments={post.comments} />
             )}
         </div>
     )
