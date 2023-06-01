@@ -4,6 +4,7 @@ export const GET_ALL_POSTS:string   = "GET_ALL_POSTS";
 export const CREATE_POST:string     = "CREATE_POST";
 export const LIKE_POST:string       = "LIKE_POST";
 export const UNLIKE_POST:string     = "UNLIKE_POST";
+export const COMMENT_POST:string    = "COMMENT_POST";
 
 export const getAllPosts = () => {
     return(dispatch:any) => {
@@ -61,4 +62,21 @@ export const unlikePost = (id:string) => {
             console.log(err);
         });
     }
-}
+};
+
+export const createComment = (postId:string, content:string) => {
+    return(dispatch:any) => {
+        return axios({
+            method: "POST",
+            withCredentials: true,
+            url: `${process.env.REACT_APP_API_URL}/post/${postId}/comment`,
+            data: {
+                content
+            }
+        }).then((res) => {
+            dispatch({type: COMMENT_POST, payload: res.data});
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+};
