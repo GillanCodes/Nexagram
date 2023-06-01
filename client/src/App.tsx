@@ -7,11 +7,21 @@ import { getUsers } from "./actions/users.action";
 import { getUser } from "./actions/user.action";
 import { UIdContext } from "./App.context";
 import { getAllPosts } from "./actions/posts.action";
+import { useSelector } from "react-redux";
+import { isEmpty } from "./Utils";
 
 function App() {
 
   const [UId, setUId] = useState(null);
   const dispatch:any = useDispatch();
+
+  const userData = useSelector((state:any) => state.userReducer);
+  const [theme, setTheme] = useState('default-light');
+
+  useEffect(() => {
+    if (!isEmpty(userData))
+      setTheme(userData.settings.theme);
+  }, [userData]);
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -38,7 +48,7 @@ function App() {
   return (
     <>
       <UIdContext.Provider value={UId}>
-        <div className="App">
+        <div className={`App ${theme}`}>
           <Routes />
         </div>
       </UIdContext.Provider>
