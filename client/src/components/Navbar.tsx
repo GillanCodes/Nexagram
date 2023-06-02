@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { isEmpty } from '../Utils';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { updateUserSetting } from '../actions/user.action';
 
 export default function Navbar() {
 
@@ -32,7 +33,12 @@ export default function Navbar() {
     };
 
     const theme = (theme:string) => {
-        dispatch()
+        const data = {
+            lang: userData.settings.lang,
+            theme,
+            isPrivate: userData.settings.isPrivate
+        }
+        dispatch(updateUserSetting(userData._id, data))
     }
 
     return (
