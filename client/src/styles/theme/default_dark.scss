@@ -17,4 +17,12 @@
 
     //CreatePost
     .post-container .post-content .post-cropper .post-creator-content .buttons .next-button {background-color: $dark-primary-button;}
+
+    //POST
+    .post-view-container .post-box {border-color: $dark-accent;}
+    
+    //COMMENT
+    .comments-box {border-color: $dark-accent;}
+    .comments-box .comments-footer .send-btn {background-color: $dark-background;}
+    .comments-box .comments-footer .comment-input {color: #000;}
 }
