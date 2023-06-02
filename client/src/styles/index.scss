@@ -1,5 +1,5 @@
 @import "./settings.scss";
-// @import "./theme/themes.scss";
+@import "./theme/themes.scss";
 
 
 @import "./components/components.scss";
@@ -12,6 +12,11 @@
 @import './navbar';
 
 @import './modules/modules.scss';
+
+.App
+{
+    min-height: 100vh;
+}
 
 * {
     margin: 0;

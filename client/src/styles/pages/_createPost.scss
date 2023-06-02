@@ -1,45 +1,56 @@
-.post-cropper
+.post-container
 {
+    height: calc(100vh - $main-nav-height);
+    width: 100vw;
 
     display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .post-creator-content
+    .post-content
     {
-        .buttons
+        .post-cropper
         {
-            display: flex;
-            justify-content: center;
-            .next-button
+            .post-creator-content
             {
-                background-color: rgb(169, 169, 255);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 50px;
-                cursor: pointer;
-            }            
-        }
-
-        .cropping 
-        {
-            margin: 10px;
-
-            .crop-container 
-            {
-                .crop 
+                .buttons
                 {
-                    height: 500px;
-                    width: 500px;
-                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    .next-button
+                    {
+                       
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 50px;
+                        cursor: pointer;
+                    }            
                 }
-                
-                .zoom 
+
+                .cropping 
                 {
-                    height: 50px;
-                    width: 200px;
-                    position: relative;
+                    margin: 10px;
+
+                    .crop-container 
+                    {
+                        .crop 
+                        {
+                            height: 500px;
+                            width: 500px;
+                            position: relative;
+                        }
+                        
+                        .zoom 
+                        {
+                            height: 50px;
+                            width: 200px;
+                            position: relative;
+                        }
+                    }
                 }
             }
         }
     }
 }
+

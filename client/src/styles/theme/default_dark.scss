@@ -1,4 +1,20 @@
 .default-dark
 {
     background-color: $dark-background;
+
+    *
+    {
+        color: white;
+    }
+
+
+    //NAV    
+    .main-nav .item {background-color: $dark-primary-button;}
+    .main-nav .item.active {background-color: $dark-secondary-button;}
+
+    //AUTH
+
+
+    //CreatePost
+    .post-container .post-content .post-cropper .post-creator-content .buttons .next-button {background-color: $dark-primary-button;}
 }
