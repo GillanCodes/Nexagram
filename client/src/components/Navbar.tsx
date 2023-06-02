@@ -3,10 +3,13 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { isEmpty } from '../Utils';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 export default function Navbar() {
 
     const userData = useSelector((state:any) => state.userReducer);
+
+    const dispatch:any = useDispatch();
 
     const [state, setState] = useState({isLogged: false});
 
@@ -27,6 +30,10 @@ export default function Navbar() {
             console.log(err);
         });
     };
+
+    const theme = (theme:string) => {
+        dispatch()
+    }
 
     return (
         <nav className="main-nav">
@@ -53,6 +60,12 @@ export default function Navbar() {
                                 <a className="item" onClick={logoutHandle}>
                                     Logout
                                 </a>
+                                <p className='item' onClick={() => theme("default-dark")}>
+                                    dark
+                                </p>
+                                <p className='item' onClick={() => theme("default-light")}>
+                                    light
+                                </p>
                             </>
                         )}
                     </div>
