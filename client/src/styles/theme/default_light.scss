@@ -1,4 +1,28 @@
 .default-light
 {
     background-color: $light-background;
-}  
+
+    *
+    {
+        color: $light-text;
+    }
+
+
+    //NAV    
+    .main-nav .item {background-color: $light-secondary-button;}
+    .main-nav .item.active {background-color: $light-accent; color: #FFF;}
+
+    //AUTH
+
+
+    //CreatePost
+    .post-container .post-content .post-cropper .post-creator-content .buttons .next-button {background-color: $light-primary-button;}
+
+    //POST
+    .post-view-container .post-box {border-color: $light-accent;}
+    
+    //COMMENT
+    .comments-box {border-color: $light-accent;}
+    .comments-box .comments-footer .send-btn {background-color: $light-background;}
+    .comments-box .comments-footer .comment-input {color: #000;}
+}
