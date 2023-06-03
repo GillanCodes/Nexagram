@@ -65,7 +65,7 @@ export default function Profile() {
                                 </div>
                                 <div className="infos">
                                     <div className="user">
-                                        <div className="userna">
+                                        <div className="username">
                                             <h2>{user.username}</h2>
                                             {state.editMode ? (
                                                 <input type="text" value={userState.fullname} onChange={(e) => setUserState(userState => ({...userState, fullname: e.target.value}))} className="input" />
