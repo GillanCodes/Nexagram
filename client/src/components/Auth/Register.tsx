@@ -26,7 +26,7 @@ export default function Register() {
         }).then((res) => {
             if (res.data.errors) return console.log("err");
             const win:Window = window;
-            win.location = '/';
+            win.location = '/auth';
         }).catch((err) => {
             console.log(err);
         });
