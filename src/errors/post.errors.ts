@@ -19,7 +19,7 @@ const createPostErrors = (error:any) => {
     return errors
 }
 
-const postComment = (error:any) => {
+const postCommentErrors = (error:any) => {
     const errors = {
         content: ""
     }
@@ -30,4 +30,4 @@ const postComment = (error:any) => {
     return errors;
 }
 
-export {createPostErrors};
+export {createPostErrors, postCommentErrors};
