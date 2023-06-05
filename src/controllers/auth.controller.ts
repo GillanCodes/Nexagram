@@ -19,7 +19,9 @@ export const register = async(req:Request, res:Response) => {
         if (isEmpty(email)) throw Error('register_empty_field_email');
         if (isEmpty(username)) throw Error('register_empty_field_username');
         if (isEmpty(password)) throw Error('register_empty_field_password');
+        if (username.length < 4) throw Error('register_field_too_short_username');
         if (username.length > 32) throw Error('register_field_too_long_username');
+        if (password.length < 8) throw Error('register_field_too_short_password');
         if (password.length > 255) throw Error('register_field_too_long_password');
 
         const settings = {
