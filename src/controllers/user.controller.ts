@@ -56,8 +56,6 @@ export const updateUser = (req:Request, res:Response) => {
     try {
         if (res.locals.user._id.toString() !== id) throw Error('not_an_author_request');
         if (!isValidObjectId(id)) throw Error('user_patch_invalid_format_id');
-        if (isEmpty(fullname)) throw Error('user_patch_empty_field_fullname');
-        if (isEmpty(bio)) throw Error('user_patch_empty_field_bio');
 
         userModel.findByIdAndUpdate(id, {
             $set: {
