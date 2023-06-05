@@ -6,6 +6,7 @@ import { isValidObjectId } from "mongoose";
 import * as fs from "fs";
 import sanitizedConfig from "../../config/config"
 import genUId from "../utils/UId";
+import {createPostErrors, postCommentErrors} from "../errors/post.errors";
 
 /**
  * -------------------------
@@ -57,7 +58,8 @@ export const createPost = async (req:any, res:Response) => {
             throw Error(err);
         });
     } catch (error) {
-        console.log(error);
+        const errors = createPostErrors(error);
+        res.status(400).send(errors);
     }
 };
 
@@ -138,6 +140,7 @@ export const createComment = (req:Request, res:Response) => {
 
     try {
         if(!isValidObjectId(id)) throw Error("comment_post_create_invalid_format_id");
+        if(isEmpty(content)) throw Error('comment_post_create_field_content_empty');
 
         postsModel.findByIdAndUpdate(id, {
             $push: {
@@ -155,7 +158,8 @@ export const createComment = (req:Request, res:Response) => {
         })
 
     } catch (error) {
-        console.log(error);
+        const errors = postCommentErrors(error);
+        res.status(400).send(errors);
     }
 }
 
