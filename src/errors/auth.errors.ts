@@ -14,4 +14,8 @@ const registerErrors = (error:any) => {
     return errors;
 }
 
-export {registerErrors};
+const loginErrors = (error:any) => {
+    return {username: "username not found or password incorrect", password: "username not found or password incorrect"}
+};
+
+export {registerErrors, loginErrors};

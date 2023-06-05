@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { isEmpty } from "../utils/isEmpty";
 import userModel from "../../models/users.model";
-import { registerErrors } from "../errors/auth.errors";
+import { registerErrors, loginErrors } from "../errors/auth.errors";
 import { sign } from "jsonwebtoken";
 import sanitizedConfig from "../../config/config";
 
@@ -50,7 +50,8 @@ export const login = async (req:Request, res:Response) => {
         res.cookie('auth', token, {httpOnly:true, maxAge});
         return res.status(200).json({user});
     } catch (error) {
-        //TODO
+        const errors = loginErrors(error);
+        res.status(400).send(errors);
     };
 };
 
