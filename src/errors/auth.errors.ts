@@ -5,12 +5,23 @@ const registerErrors = (error:any) => {
         password: "",
     }
 
-    if (error.message.includes('username'))
-        errors.username = error.message;
-    if (error.message.includes('password'))
-        errors.password = error.message;
-    if (error.message.includes('email'))
-        errors.email = error.message;
+    if(error.message === 'register_empty_field_username')
+        errors.username = "Username is empty !";
+    if (error.message === 'register_field_too_short_username')
+        errors.username = "Username must be at least 5 length";
+    if (error.message === 'register_field_too_long_username')
+        errors.username = "Username must shorter than 32";
+    
+    if (error.message === 'register_empty_field_email')
+        errors.email = "Email must be valid or not empty";
+
+    if (error.message === 'register_empty_field_password')
+        error.password = "Password must not be empty !";
+    if (error.message === 'register_field_too_short_password')
+        error.password = "Password must be a least 8 long";
+    if (error.message === 'register_field_too_long_password')
+        error.password =   "Password couldn't be longer than 255";
+    
     return errors;
 }
 
