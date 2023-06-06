@@ -16,17 +16,17 @@ const registerErrors = (error:any) => {
         errors.email = "Email must be valid or not empty";
 
     if (error.message === 'register_empty_field_password')
-        error.password = "Password must not be empty !";
+        errors.password = "Password must not be empty !";
     if (error.message === 'register_field_too_short_password')
-        error.password = "Password must be a least 8 long";
+        errors.password = "Password must be a least 8 long";
     if (error.message === 'register_field_too_long_password')
-        error.password =   "Password couldn't be longer than 255";
+        errors.password =   "Password couldn't be longer than 255";
     
     return errors;
 }
 
 const loginErrors = (error:any) => {
-    return {username: "username not found or password incorrect", password: "username not found or password incorrect"}
+    return {log: "username not found or password incorrect", password: "username not found or password incorrect"}
 };
 
 export {registerErrors, loginErrors};
