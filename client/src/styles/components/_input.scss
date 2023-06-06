@@ -9,3 +9,8 @@ input.input
     border: 1px grey solid;
 
 }
+
+input.input.error 
+{
+    border: 1px red solid;
+}
