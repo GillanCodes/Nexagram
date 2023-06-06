@@ -35,7 +35,7 @@ export const register = async(req:Request, res:Response) => {
     } catch (error) {
         console.log(error);
         const errors = registerErrors(error);
-        return res.status(400).send({errors});
+        return res.status(200).send({errors});
     };
 };
 
@@ -51,7 +51,7 @@ export const login = async (req:Request, res:Response) => {
         return res.status(200).json({user});
     } catch (error) {
         const errors = loginErrors(error);
-        res.status(400).send(errors);
+        res.status(200).send({errors});
     };
 };
 

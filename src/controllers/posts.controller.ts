@@ -59,7 +59,7 @@ export const createPost = async (req:any, res:Response) => {
         });
     } catch (error) {
         const errors = createPostErrors(error);
-        res.status(400).send(errors);
+        res.status(200).send(errors);
     }
 };
 
@@ -159,7 +159,7 @@ export const createComment = (req:Request, res:Response) => {
 
     } catch (error) {
         const errors = postCommentErrors(error);
-        res.status(400).send(errors);
+        res.status(200).send(errors);
     }
 }
 
