@@ -19,15 +19,21 @@ export default function Discover() {
         <div className='discover-container'>
             <div className="discover-content">
                 {state.isLoad ? (
-                    <>
+                    <div className='post-grid'>
                         {postsData.sort((a:any,b:any) => convertDatetoTime(b.createdAt) - convertDatetoTime(a.createdAt)).map((post:any, key:number) => {
                             return (
                                 <div className="post" id={post._id} key={key}>
-                                    <img src={`${process.env.REACT_APP_CDN_URL}/posts/${post.medias[0]}`} alt="Post-img" />
+                                    <a className='post-cover' href={`/p/${post._id}`}>
+                                        <div className="icons">
+                                            <p>{post.likers.length}</p>
+                                            <p>{post.comments.length}</p>
+                                        </div>
+                                        <img className='post-img' src={`${process.env.REACT_APP_CDN_URL}/posts/${post.medias[0]}`} alt="Post-img" />
+                                    </a>
                                 </div>
                             )
                         })} 
-                    </>
+                    </div>
                 ): (
                     <p>Loading</p>
                 )} 
