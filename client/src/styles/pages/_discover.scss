@@ -1,0 +1,72 @@
+$post-size: 300px;
+
+.discover-container
+{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    .discover-content
+    {
+        width: 50%;
+
+        .post-grid
+        {
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .post
+            {
+                height: $post-size;
+                width: $post-size;
+                margin: 10px;
+
+                .post-img
+                {
+                    height: $post-size;
+                    width: $post-size;
+                    object-fit: cover;
+                }
+
+                .post-cover
+                {
+                    height: $post-size;
+                    width: $post-size;
+                }
+
+                .icons
+                {
+                    
+                    height: $post-size;
+                    width: $post-size;
+
+                    font-size: 1.4em;
+                    display: none;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    position: absolute;
+                    
+                    *{
+                        color: white;
+                    }
+                }
+
+
+            }
+
+            .post:hover .icons
+            {
+                display: flex;
+                background-color: rgba($color: #000000, $alpha: 0.4);
+            }
+        }
+
+        
+    }
+}
