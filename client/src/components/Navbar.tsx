@@ -63,6 +63,9 @@ export default function Navbar() {
                                 <NavLink className={"item"} to={`/post`}>
                                     Post
                                 </NavLink>
+                                <NavLink className={"item"} to={`/discover`}>
+                                    Discover
+                                </NavLink>
                                 <a className="item" onClick={logoutHandle}>
                                     Logout
                                 </a>

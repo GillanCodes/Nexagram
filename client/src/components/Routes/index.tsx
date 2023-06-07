@@ -6,6 +6,7 @@ import Profile from "../Profile/Profile";
 import CreatePost from "../Post/CreatePost";
 import Post from "../Post/Post";
 import FollowFeed from "../Feed/FollowFeed";
+import Discover from "../Discorver/Discover";
 
 export default function index()
 {
@@ -17,6 +18,7 @@ export default function index()
                 <Route path={"/auth"} Component={Auth} />
                 <Route path="/post" Component={CreatePost} />
                 <Route path="/feed" Component={FollowFeed} />
+                <Route path="/discover" Component={Discover} />
 
                 <Route path="/p/:id" Component={Post} />
                 <Route path="/u/:username" Component={Profile} />
