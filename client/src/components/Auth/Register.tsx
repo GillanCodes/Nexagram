@@ -40,13 +40,13 @@ export default function Register() {
       <div className="content">
         <form onSubmit={submitHandle}>
           <p className='error'>{!isEmpty(errors) && errors.email}</p>
-          <input className="input" type="email" name="email" id="email" placeholder='Email' onChange={(e) => setState(state => ({...state, email: e.target.value}))} />
+          <input className={!isEmpty(errors) && !isEmpty(errors.email) ? "input error" : "input"} type="email" name="email" id="email" placeholder='Email' onChange={(e) => setState(state => ({...state, email: e.target.value}))} />
           <p className='error'>{!isEmpty(errors) && errors.username}</p>
-          <input className="input" type="text" name="username" id="username" placeholder='Username' onChange={(e) => setState(state => ({...state, username: e.target.value}))} />
+          <input className={!isEmpty(errors) && !isEmpty(errors.username) ? "input error" : "input"} type="text" name="username" id="username" placeholder='Username' onChange={(e) => setState(state => ({...state, username: e.target.value}))} />
           <p className='error'>{!isEmpty(errors) && errors.fullname}</p>
-          <input className="input" type="text" name="fullname" id="fullname" placeholder='Full Name' onChange={(e) => setState(state => ({...state, fullname: e.target.value}))} />
+          <input className={!isEmpty(errors) && !isEmpty(errors.fullname) ? "input error" : "input"} type="text" name="fullname" id="fullname" placeholder='Full Name' onChange={(e) => setState(state => ({...state, fullname: e.target.value}))} />
           <p className='error'>{!isEmpty(errors) && errors.password}</p>
-          <input className="input" type="password" name="password" id="password" placeholder='Password' onChange={(e) => setState(state => ({...state, password: e.target.value}))} />
+          <input className={!isEmpty(errors) && !isEmpty(errors.password) ? "input error" : "input"} type="password" name="password" id="password" placeholder='Password' onChange={(e) => setState(state => ({...state, password: e.target.value}))} />
           <input type="submit" value="Register" className='button' />
         </form>
       </div>
