@@ -20,9 +20,8 @@ export default function Login() {
             }
         }).then((res) => {
             if (res.data.errors) return setErrors(res.data.errors);
-            console.log(res.data);
-            // const win:Window = window;
-            // win.location = '/';
+            const win:Window = window;
+            win.location = '/';
         }).catch((err) => {
             console.log(err);
         });
