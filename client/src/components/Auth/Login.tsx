@@ -33,9 +33,9 @@ export default function Login() {
             <div className="content">
                 <form onSubmit={(e) => submitHandle(e)}>
                     <p className='error'>{!isEmpty(errors) && errors.log}</p>
-                    <input className="input" type="email" name="email" id="email" placeholder='Email' onChange={(e) => setState({...state, email:e.target.value})} />
+                    <input className={!isEmpty(errors) && !isEmpty(errors.log) ? "input error" : "input"} type="email" name="email" id="email" placeholder='Email' onChange={(e) => setState({...state, email:e.target.value})} />
                     <p className='error'>{!isEmpty(errors) && errors.password}</p>
-                    <input className="input" type="password" name="password" id="password" placeholder='Password' onChange={(e) => setState({...state, password:e.target.value})} />
+                    <input className={!isEmpty(errors) && !isEmpty(errors.password) ? "input error" : "input"} type="password" name="password" id="password" placeholder='Password' onChange={(e) => setState({...state, password:e.target.value})} />
                     <input className="button" type="submit" value="Login!" />
                 </form>
             </div>
