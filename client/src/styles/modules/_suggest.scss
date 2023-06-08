@@ -1,0 +1,37 @@
+.suggest
+{
+    height: 250px;
+    overflow: hidden;
+ 
+    display: flex;
+
+    .box
+    {
+        width: 170px;
+        height: 200px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid;
+        border-radius: 10px;
+
+        margin: 10px;
+
+        .avatar
+        {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 100%;
+            margin-bottom: 2em;
+        }
+
+        .button
+        {
+            margin-top: 1em;
+        }
+    }
+}
