@@ -46,9 +46,7 @@ export default function Navbar() {
             <div className="container">
                 <div className="content">
                     <div className="items">
-                        <NavLink className={"item"} to="/">
-                            Home
-                        </NavLink>
+
                         {!state.isLogged ? (
                             <>
                                 <NavLink className={"item"} to="/auth">
@@ -57,24 +55,34 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <NavLink className={"item"} to={`/u/${userData.username}`}>
-                                    {userData.username}
-                                </NavLink>
-                                <NavLink className={"item"} to={`/post`}>
-                                    Post
-                                </NavLink>
-                                <NavLink className={"item"} to={`/discover`}>
-                                    Discover
-                                </NavLink>
-                                <a className="item" onClick={logoutHandle}>
-                                    Logout
-                                </a>
-                                <p className='item' onClick={() => theme("default-dark")}>
+                                <div className="group left">
+                                    <NavLink className={"item"} to="/">
+                                        Home
+                                    </NavLink>
+                                    <NavLink className={"item"} to={`/discover`}>
+                                        Discover
+                                    </NavLink>
+                                </div>                                
+                                <div className="group center">
+                                    <input type="text" name="" id="" className="input" placeholder='Search WIP' />
+                                </div>
+                                <div className="group right">
+                                    <NavLink className={"item"} to={`/u/${userData.username}`}>
+                                        {userData.username}
+                                    </NavLink>
+                                    <NavLink className={"item"} to={`/post`}>
+                                        Post
+                                    </NavLink>
+                                    <a className="item" onClick={logoutHandle}>
+                                        Logout
+                                    </a>
+                                </div>
+                                {/* <p className='item' onClick={() => theme("default-dark")}>
                                     dark
                                 </p>
                                 <p className='item' onClick={() => theme("default-light")}>
                                     light
-                                </p>
+                                </p> */}
                             </>
                         )}
                     </div>

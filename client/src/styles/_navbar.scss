@@ -12,6 +12,7 @@
         .content {
             height: 100%;
 
+
             .items {
 
                 width: 100%;
@@ -19,8 +20,20 @@
 
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
 
-                .item {
+                .group {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .right {
+                    float: right;
+                }
+
+                .item, .right .item, .group .item {
                     display: flex;
                     justify-content: center;
                     align-items: center;
