@@ -68,6 +68,7 @@ export default function Navbar() {
                                 </div>
                                 <div className="group right">
                                     <NavLink className={"item"} to={`/u/${userData.username}`}>
+                                        <img src={`${process.env.REACT_APP_CDN_URL}/profile/${userData.avatar}`} alt="" className="avatar" />
                                         {userData.username}
                                     </NavLink>
                                     <NavLink className={"item"} to={`/post`}>

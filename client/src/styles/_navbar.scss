@@ -40,7 +40,17 @@
                     height: 100%;
                     padding: 0px 15px;
                     cursor: pointer;
+                    text-decoration: none;
+                    font-weight: 600;
+
+                    .avatar {
+                        margin-right: 10px;
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                    }
                 }
+                
             }
         }
     }
