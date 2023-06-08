@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { convertDatetoTime, isEmpty } from '../../Utils';
 import PostBox from '../Post/PostBox';
+import Suggest from '../Discorver/Suggest';
 
 export default function FollowFeed() {
 
@@ -22,16 +23,26 @@ export default function FollowFeed() {
             <div className="container">
                 <div className="content">
                     {state.isLoad && (
-                        <>
-                            {postsData.sort((a:any,b:any) => convertDatetoTime(b.createdAt) - convertDatetoTime(a.createdAt)).map((post:any) => {
-                                if (userData.follow.includes(post.posterId))
-                                {
-                                    return (
-                                        <PostBox post={post} comments={false} />
-                                    )
-                                }
-                            })}
-                        </>
+                       <>
+                        {isEmpty(userData.follow) ? (
+                            <div className="empty-feed">
+                                <h2>Discover Peoples !</h2>
+                                <a href="/discover">Discover page</a>
+                                <Suggest />
+                            </div>
+                        ) : (
+                            <>
+                                {postsData.sort((a:any,b:any) => convertDatetoTime(b.createdAt) - convertDatetoTime(a.createdAt)).map((post:any) => {
+                                    if (userData.follow.includes(post.posterId))
+                                    {
+                                        return (
+                                            <PostBox post={post} comments={false} />
+                                        )
+                                    }
+                                })}
+                            </>
+                            )}
+                        </> 
                     )}
                 </div>
             </div>
