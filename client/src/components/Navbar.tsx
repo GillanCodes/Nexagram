@@ -5,6 +5,7 @@ import { isEmpty } from '../Utils';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { updateUserSetting } from '../actions/user.action';
+import Search from './Navbar/Search';
 
 export default function Navbar() {
 
@@ -64,7 +65,7 @@ export default function Navbar() {
                                     </NavLink>
                                 </div>                                
                                 <div className="group center">
-                                    <input type="text" name="" id="" className="input" placeholder='Search WIP' />
+                                    <Search />
                                 </div>
                                 <div className="group right">
                                     <NavLink className={"item"} to={`/u/${userData.username}`}>
