@@ -11,6 +11,7 @@
     //NAV    
     .main-nav {background-color: $dark-primary-button;}
     .main-nav .item.active {background-color: $dark-secondary-button;}
+    .main-nav .item.has-dropdown .dropdown {background-color: $dark-primary-button;}
 
     //AUTH
 
@@ -28,4 +29,6 @@
 
     //SUGGEST
     .suggest .box {border-color: $light-accent;}
+
+    .button {color: white; background-color: $dark-primary-button;}
 }
