@@ -77,6 +77,14 @@ export default function Navbar() {
                                     <a className="item" onClick={logoutHandle}>
                                         Logout
                                     </a>
+                                    <p className="item has-dropdown">
+                                        Themes
+
+                                        <div className="dropdown">
+                                            <p className='item' onClick={() => theme("default-light")}>Light</p>
+                                            <p className='item' onClick={() => theme("default-dark")}>Dark</p>
+                                        </div>
+                                    </p>
                                 </div>
                                 {/* <p className='item' onClick={() => theme("default-dark")}>
                                     dark

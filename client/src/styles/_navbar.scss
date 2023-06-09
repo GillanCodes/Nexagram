@@ -50,6 +50,33 @@
                         border-radius: 50%;
                     }
                 }
+
+                .item.has-dropdown{
+
+                    .dropdown
+                    {
+                        display: none;
+                        flex-direction: column;
+                        position: absolute;
+                        top: calc($main-nav-height);
+                        padding: 10px;
+
+                        .item
+                        {
+                            margin: 10px;
+                        }
+                    }
+
+                }
+                
+                .item.has-dropdown:hover{
+
+                    .dropdown
+                    {
+                        display: flex;
+                    }
+
+                }
                 
             }
         }
