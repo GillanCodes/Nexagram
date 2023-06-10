@@ -105,7 +105,8 @@ export default function CreatePost() {
                         </div>
                         {imgIndex === files.length  && (
                             <div className="form">
-                                <input className='input' type="text" name="caption" id="caption" onChange={(e) => setCaption(e.target.value)}  />
+                                <p className='title'>Caption your post !</p>
+                                <input className='input' type="text" name="caption" id="caption" placeholder="I have captioned my pics !" onChange={(e) => setCaption(e.target.value)}  />
                                 <button className='button' onClick={createPostHandle}>Post !</button>
                             </div>
                         )}
