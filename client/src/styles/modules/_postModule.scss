@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
 
-    margin: 10px 0;
+    margin-top: -32px;
 
     .post-box
     {
@@ -111,8 +111,9 @@
 
             .medias
             {
+                height: calc($post-view-box-height - $post-view-header-height - $post-view-footer-height);
                 width: $post-view-box-width;
-                height: $post-view-box-height;
+                // height: $post-view-box-height;
                 object-fit: cover;
             }
         }
