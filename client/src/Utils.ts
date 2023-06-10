@@ -11,3 +11,12 @@ export const convertDatetoTime = (date:string) => {
     var timesptamp = new Date(date).getTime();
     return timesptamp;
 }
+
+export const dateConverter = (timestamp:number) => {  
+
+    let options:any = {hour: "2-digit", minute: "2-digit", weekday: "long", year: "numeric", month: "short", day:"numeric"}
+    let date = new Date(timestamp * 1).toLocaleDateString('fr-FR', options);
+        
+    return date.toString();
+    
+}
