@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { isEmpty } from '../../Utils';
+import { convertDatetoTime, dateConverter, isEmpty } from '../../Utils';
 import { useDispatch } from 'react-redux';
 import { likePost, unlikePost } from '../../actions/posts.action';
 import CommentsBox from './CommentsBox';
@@ -101,6 +101,9 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
                             <div className="info comments">
                                 <a href={`/p/${post._id}`}><i className="fa-regular fa-comment"></i></a>
                                 <p>{post.comments.length}</p>
+                            </div>
+                            <div className="info time">
+                                <p>{dateConverter(convertDatetoTime(post.createdAt))}</p>
                             </div>
                         </div>
                     </div>
