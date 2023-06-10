@@ -13,7 +13,8 @@
     .main-nav .item.active {background-color: $light-accent; color: #FFF;}
     .main-nav .item.has-dropdown .dropdown {background-color: $light-secondary-button;}
 
-    //AUTH
+    //PROFILE
+    .profile-feed .content .post .icons p, .profile-feed .content .post .icons p i {color: white;}
 
 
     //CreatePost
