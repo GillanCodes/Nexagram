@@ -83,7 +83,13 @@ export default function CreatePost() {
     return (
         <div className='post-container'>        
             <div className="post-content">
-                {!state.isLoad && (<input type="file" multiple onChange={(e) => filesAddHandle(e.target.files)}  />)} 
+                {!state.isLoad && (
+                    <div className="files-input">
+                        <label htmlFor='files' className='input-title'><i className="fa-solid fa-upload"></i> Files Upload</label>
+                        <input type="file" name='files' id='files' multiple onChange={(e) => filesAddHandle(e.target.files)}  />
+                        <p className='tips'>You can select multiple files</p>
+                    </div>
+                )} 
                 {state.isLoad && (
                     <>
                         
