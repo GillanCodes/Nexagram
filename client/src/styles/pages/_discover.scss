@@ -48,10 +48,15 @@ $post-size: 300px;
                     font-size: 1.4em;
                     display: none;
                     align-items: center;
-                    justify-content: space-around;
+                    justify-content: space-evenly;
 
                     position: absolute;
                     
+                    i
+                    {
+                        margin-left: 5px;
+                    }
+
                     *{
                         color: white;
                     }

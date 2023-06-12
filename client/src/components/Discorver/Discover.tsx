@@ -25,8 +25,8 @@ export default function Discover() {
                                 <div className="post" id={post._id} key={key}>
                                     <a className='post-cover' href={`/p/${post._id}`}>
                                         <div className="icons">
-                                            <p>{post.likers.length}</p>
-                                            <p>{post.comments.length}</p>
+                                            <p>{post.likers.length}<i className="fa-solid fa-heart"></i></p>
+                                            <p>{post.comments.length}<i className="fa-solid fa-comment"></i></p>
                                         </div>
                                         <img className='post-img' src={`${process.env.REACT_APP_CDN_URL}/posts/${post.medias[0]}`} alt="Post-img" />
                                     </a>
