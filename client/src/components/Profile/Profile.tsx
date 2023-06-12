@@ -5,7 +5,7 @@ import { isEmpty } from '../../Utils';
 import { IUser } from '../../interfaces/user.interface';
 import ProfileGrid from './ProfileGrid';
 import { useDispatch } from 'react-redux';
-import { followUser, unfollowUser, updateUser } from '../../actions/user.action';
+import { followUser, unfollowUser, updateUser, updateUserSetting } from '../../actions/user.action';
 import UploadAvatar from './Modals/UploadAvatar';
 import FollowButton from './FollowButton';
 
@@ -32,10 +32,22 @@ export default function Profile() {
         fullname: ""
     });
 
+    const [isPrivate, setIsPrivate] = useState(false);
+
     const updateUserHandle = () => {
         dispatch(updateUser(userState));
         setState(state => ({...state, editMode: false}));
+        var settings = {
+            theme: userData.settings.theme,
+            lang: userData.settings.lang,
+            isPrivate,
+        }
+        dispatch(updateUserSetting(userData._id, settings));
     }
+
+    const settingsHandle = (checked:boolean) => {
+        setIsPrivate(checked); 
+    }   
 
     const modalHandle = () => {
         setState(state => ({...state, avatarMode:!state.avatarMode}))
@@ -48,6 +60,7 @@ export default function Profile() {
         {
             setState(state => ({...state, isOwner: true}));
             setUserState(state => ({...state, _id: userData._id, bio:userData.bio, fullname:userData.fullname}));
+            setIsPrivate(userData.settings.isPrivate);
         }
     }, [usersData, userData]);
 
@@ -79,6 +92,15 @@ export default function Profile() {
                                            </>
                                         )}
                                         {state.isOwner && (<button className='button' onClick={() => state.editMode ? updateUserHandle() : setState(state => ({...state, editMode:!state.editMode}))}>Edit</button>)}
+                                        {state.editMode && ( 
+                                           <div className="private-switch">
+                                                <p>Private account</p>
+                                                <label className="switch">
+                                                    <input type="checkbox" checked={isPrivate} onChange={(e) => settingsHandle(e.target.checked)} />
+                                                    <span className='slider'></span>
+                                                </label>
+                                           </div> 
+                                        )}
                                     </div>
                                     <div className="stats">
                                         <div className="stats-content">
