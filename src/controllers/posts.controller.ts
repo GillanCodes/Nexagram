@@ -17,12 +17,18 @@ import {createPostErrors, postCommentErrors} from "../errors/post.errors";
 export const getPosts = async (req:Request, res:Response) => {
 
     var posts = await postsModel.find()
-    const users = await userModel.find({"settings.isPrivate": true});
+    // const users = await userModel.find({"settings.isPrivate": true});
+    const users = await userModel.find({ 
+        $and: [ 
+            {_id : {$ne : res.locals.user._id}}, 
+            {"settings.isPrivate": true} 
+        ]
+    });
 
     await users.map(async (user) => {
         posts = await posts.filter((post) => post.posterId != user._id.toString());
     });
-
+    
     res.send(posts)
 }
 
