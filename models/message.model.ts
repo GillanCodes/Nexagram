@@ -1,11 +1,10 @@
-import mongoose, { Schema, model, mongo } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 export interface IMessage 
 {
     message:string,
     users:Array<string>,
     sender:mongoose.Schema.Types.ObjectId,
-    
 };
 
 const messageSchema = new Schema<IMessage>({
