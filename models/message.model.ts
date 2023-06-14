@@ -13,5 +13,5 @@ const messageSchema = new Schema<IMessage>({
     sender:{ type: mongoose.Schema.Types.ObjectId, required: true}
 });
 
-const messageModel = model<IMessage>("notification", messageSchema);
+const messageModel = model<IMessage>("message", messageSchema);
 export default messageModel;
