@@ -13,6 +13,7 @@ import sanitizedConfig from "./config/config";
 
 /** init app */
 let app:express.Application = express();
+let server = require('http').createServer(app);
 // incldes database connect file
 require('./config/database');
 
@@ -67,6 +68,9 @@ app.use('/api/auth/', authRoutes);
 app.use('/api/user/', requireAuth, userRoutes);
 app.use("/api/post", requireAuth, postsRoutes);
 
-app.listen(sanitizedConfig.PORT, () => {
+//Socket.IO
+require('./src/socket/socket').socket(server);
+
+server.listen(sanitizedConfig.PORT, () => {
     console.log(`[Nexagram] API is UP ! Listening on ${sanitizedConfig.PORT}`);
 });
