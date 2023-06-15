@@ -27,6 +27,10 @@ module.exports.socket = (httpServer:any) => {
     });
 
     io.on("connection", (socket:any) => {
+        io.on('get-chat', (chatId:any) => {
+            socket.join(chatId);
+        })
+
 
         socket.on('new-message', (data:IData) => {
             messageModel.create({
