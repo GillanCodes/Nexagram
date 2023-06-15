@@ -76,9 +76,11 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
                                             <img className='avatar' src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
                                             <a className='username' href={`/u/${user.username}`}>{user.username}</a>
                                             <FollowButton userData={userData} usersData={user} />
-                                            <div className="options">
-                                                <p className="delete button" onClick={deleteHandle}>Delete</p>
-                                            </div>
+                                            {post.posterId === userData._id && (
+                                                <div className="options">
+                                                    <div className="delete button" onClick={deleteHandle}>Delete</div>
+                                                </div>
+                                            )}
                                         </>
                                     )
                                 }
