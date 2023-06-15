@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { convertDatetoTime, dateConverter, isEmpty } from '../../Utils';
 import { useDispatch } from 'react-redux';
-import { likePost, unlikePost } from '../../actions/posts.action';
+import { deletePost, likePost, unlikePost } from '../../actions/posts.action';
 import CommentsBox from './CommentsBox';
 import FollowButton from '../Profile/FollowButton';
 
@@ -56,6 +56,12 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
         dispatch(unlikePost(post._id));
     }
 
+    const deleteHandle = async () => {
+        await dispatch(deletePost(post._id));
+        const w:Window = window;
+        w.location = '/';
+    }
+
     return (
         <div className='post-view-container'>
             {state.isLoad && (
@@ -70,6 +76,9 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
                                             <img className='avatar' src={`${process.env.REACT_APP_CDN_URL}/profile/${user.avatar}`} alt="" />
                                             <a className='username' href={`/u/${user.username}`}>{user.username}</a>
                                             <FollowButton userData={userData} usersData={user} />
+                                            <div className="options">
+                                                <p className="delete button" onClick={deleteHandle}>Delete</p>
+                                            </div>
                                         </>
                                     )
                                 }
