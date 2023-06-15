@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { isEmpty } from '../../Utils';
 import { useDispatch } from 'react-redux';
-import { createComment } from '../../actions/posts.action';
+import { createComment, deleteComment } from '../../actions/posts.action';
 
 export default function CommentsBox({post} : {post:any}) {
 
@@ -30,6 +30,10 @@ export default function CommentsBox({post} : {post:any}) {
         setComment('');
     }
 
+    const deleteCommentHandle = (commentId:string) => {
+        dispatch(deleteComment(post._id, commentId));
+    }
+
     return (
         <div className='comments-box'>
             <div className="comments-container">
@@ -52,7 +56,7 @@ export default function CommentsBox({post} : {post:any}) {
                     </div>
                     {state.usersLoad ? (
                         <>
-                            {post.comments.map((comment:any) => {
+                            {post.comments.sort((a:any, b:any) => b.timestamps - a.timestamps).map((comment:any) => {
                                 return (
                                     <div className="comment">
                                         <div className="user">
@@ -68,6 +72,11 @@ export default function CommentsBox({post} : {post:any}) {
                                             <div className="comment-text">
                                                 <p>{comment.content}</p>
                                             </div>
+                                            {userData._id === comment.commenterId && (
+                                                <div className="options">
+                                                    <p className="delete button" onClick={() => deleteCommentHandle(comment._id)}>Delete</p>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )
@@ -83,7 +92,7 @@ export default function CommentsBox({post} : {post:any}) {
                     {state.myselfLoad ? (
                         <>
                             <img className="avatar" src={`${process.env.REACT_APP_CDN_URL}/profile/${userData.avatar}`} alt="avatar" />
-                            <input className="comment-input input" type="text" placeholder='My Comment !' onChange={(e:any) => setComment(e.target.value)} />
+                            <input className="comment-input input" type="text" placeholder='My Comment !' value={comment} onChange={(e:any) => setComment(e.target.value)} />
                             <button className='send-btn' onClick={commentHandle}><i className="fa-solid fa-circle-arrow-right"></i></button>
                         </>
                     ) : (

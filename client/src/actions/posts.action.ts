@@ -6,6 +6,7 @@ export const DELETE_POST:string     = "DELETE_POST";
 export const LIKE_POST:string       = "LIKE_POST";
 export const UNLIKE_POST:string     = "UNLIKE_POST";
 export const COMMENT_POST:string    = "COMMENT_POST";
+export const DELETE_COMMENT:string  = "DELETE_COMMENT";
 
 export const getAllPosts = () => {
     return(dispatch:any) => {
@@ -95,3 +96,18 @@ export const createComment = (postId:string, content:string) => {
         })
     }
 };
+
+export const deleteComment = (postId:string, commentId:string) => {
+    return(dispatch:any) => {
+        return axios({
+            method: "DELETE",
+            withCredentials: true,
+            url: `${process.env.REACT_APP_API_URL}/post/${postId}/comment/${commentId}`,
+
+        }).then((res) => {
+            dispatch({type: COMMENT_POST, payload: res.data});
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+}

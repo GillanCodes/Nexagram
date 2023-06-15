@@ -1,4 +1,4 @@
-import { COMMENT_POST, CREATE_POST, DELETE_POST, GET_ALL_POSTS, LIKE_POST, UNLIKE_POST } from "../actions/posts.action";
+import { COMMENT_POST, CREATE_POST, DELETE_COMMENT, DELETE_POST, GET_ALL_POSTS, LIKE_POST, UNLIKE_POST } from "../actions/posts.action";
 
 const initialState:any = {};
 
@@ -30,6 +30,12 @@ export default function postsReducer(state = initialState, action:any)
                 if(post._id === action.payload._id)
                     return action.payload
                 else return post
+            });
+        case DELETE_COMMENT:
+            return state.map((post:any) => {
+                if (post._id === action.payload._id){
+                    return action.payload;
+                } else return post
             });
         default:
             return state;
