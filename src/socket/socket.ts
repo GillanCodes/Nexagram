@@ -15,7 +15,6 @@ module.exports.socket = (httpServer:any) => {
     const io = socket(httpServer, {
         cors: {
             origin: function (origin:any, callback:any) {
-                console.log(origin)
                 if (whiteList.indexOf(origin) !== -1) {
                     callback(null, true)
                 } else {
