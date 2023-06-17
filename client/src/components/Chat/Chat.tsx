@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import io from "socket.io-client";
+import { isEmpty } from '../../Utils';
 
 
 export default function Chat() {
@@ -28,6 +29,11 @@ export default function Chat() {
         }
         socket.emit('new-message', data);
     };
+
+    useEffect(() => {
+        if (!isEmpty(socket))
+            socket.emit('get-chat')
+    }, [socket])
 
     return (
         <div>

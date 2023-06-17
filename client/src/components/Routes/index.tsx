@@ -8,6 +8,7 @@ import Post from "../Post/Post";
 import FollowFeed from "../Feed/FollowFeed";
 import Discover from "../Discorver/Discover";
 import Chat from "../Chat/Chat";
+import ChatRoom from "../Chat/ChatRoom";
 
 export default function index()
 {
@@ -21,6 +22,7 @@ export default function index()
                 <Route path="/feed" Component={FollowFeed} />
                 <Route path="/discover" Component={Discover} />
                 <Route path="/chat" Component={Chat} />
+                <Route path="/chat/:id" Component={ChatRoom} />
 
                 <Route path="/p/:id" Component={Post} />
                 <Route path="/u/:username" Component={Profile} />
