@@ -59,7 +59,7 @@ export default function PostBox({ post, comments } : { post: any, comments:boole
     const deleteHandle = async () => {
         await dispatch(deletePost(post._id));
         const w:Window = window;
-        w.location = '/';
+        w.location = `/u/${userData.username}`;
     }
 
     return (
