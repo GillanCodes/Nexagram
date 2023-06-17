@@ -10,12 +10,14 @@ export interface IChat extends Document
 {
     owner:string,
     users:[string],
+    name: String,
     messages:[IMessage]
 };
 
 const chatSchema = new Schema<IChat>({
     owner: {type:String, required:true},
     users: {type:[String], required:true},
+    name: {type:String},
     messages: {type: [
         {
             sender: {type:String, required:true},
