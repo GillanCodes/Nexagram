@@ -24,12 +24,13 @@ export default function ChatRoom() {
 
     useEffect(() => {
         if (!isEmpty(socket))
-            socket.emit('get-chat', {id: id});
-    }, [socket]);
+            socket.emit('get-chat', id);
+    }, []);
 
     useEffect(() => {
         if(!isEmpty(socket))
             socket.on('send-chat', (chatData:any) => {
+                console.log(chatData)
                 setChat(chatData);
             });
     })
@@ -42,7 +43,7 @@ export default function ChatRoom() {
     return (
         <div className='container'>
             {state.isChatLoad && (
-                <p>{chat.id}</p>
+                <p>{chat._id}</p>
             )}
         </div>
     )
